@@ -318,23 +318,32 @@ class OpenidServer {
 	
 	// see section 10 of specification
 	function checkid_setup($type = null) {
-	
+		//$this->_debug();
 		if (!empty($_SESSION['user_id']) && isset($_POST['trust'])) {
 			
 			$openid_identity = isset($_GET['openid_identity']) ? $_GET['openid_identity'] : '';
 			$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
+			
+			if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
+				$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
+			}
+			
 			
 			if (!empty($_GET['openid_ns']) && $_GET['openid_ns'] == 'http://specs.openid.net/auth/2.0') {
 				$data_to_send['openid.ns'] = 'http://specs.openid.net/auth/2.0';
 				$this->openid_version = 2;
 			}
 			
+			if (!empty($_GET['openid_identity']) && $_GET['openid_identity'] == 'http://specs.openid.net/auth/2.0/identifier_select') {
+				$data_to_send['openid.identity'] = $openid_identity;	
+			}
+						
 			$data_to_send['openid.mode'] = 'id_res';
 			
 			if (isset($this->openid_version) && $this->openid_version == 2) {
 				$data_to_send['openid.op_endpoint'] = $this->server_url();
 				$data_to_send['openid.claimed_id'] = $openid_identity;
-				$data_to_send['openid.response_nonce'] = date('Y-m-d') . 'T' . date('H:i:s') . 'ZUNIQUE';
+				$data_to_send['openid.response_nonce'] = gmdate('Y-m-d') . 'T' . gmdate('H:i:s') . 'ZUNIQUE';
 			}
 			
 			$data_to_send['openid.identity'] = $openid_identity;
@@ -378,7 +387,7 @@ class OpenidServer {
 			if (strpos($openid_return_to, $s)) {
 				$s = '&';
 			}
-		
+	//	$this->_debug($data_to_send);
 			// send us back to the consumer
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
@@ -411,7 +420,7 @@ class OpenidServer {
 			if (isset($this->openid_version) && $this->openid_version == 2) {
 				$data_to_send['openid.op_endpoint'] = $this->server_url();
 				$data_to_send['openid.claimed_id'] = $openid_identity;
-				$data_to_send['openid.response_nonce'] = date('Y-m-d') . 'T' . date('H:i:s') . 'ZUNIQUE';
+				$data_to_send['openid.response_nonce'] = gmdate('Y-m-d') . 'T' . gmdate('H:i:s') . 'ZUNIQUE';
 			}
 			
 			$data_to_send['openid.identity'] = $openid_identity;
