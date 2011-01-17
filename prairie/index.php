@@ -42,7 +42,6 @@ session_start();
 // SETUP URL ROUTING ------------------------------------------------
 $uri_routing = routeURL();
 
-
 if (isset($uri_routing[0]) && $uri_routing[0] == "disconnect") {
 	session_unset();
 	session_destroy();
@@ -99,7 +98,6 @@ elseif (!empty($core_config['script']['multiple_webspace_pattern'])) { // using 
 		$user_webspace = $matches[1];
 	}
 }
-
 if (isset($user_webspace)) {
 
 	// SELECT WEBSPACE -------------------------------------------
@@ -114,7 +112,6 @@ if (isset($user_webspace)) {
 	;
 	
 	$result = $db->Execute($query, 1);
-	
 	if (!empty($result[0]) && $result[0]['user_live'] == 1) {
 
 		$webspace = $result[0];
@@ -157,7 +154,7 @@ if (isset($user_webspace)) {
 					$uri_routing[0]="trust"; 
 				} else {
 					
-					if ($openid_mode=="checkid_immediate"){
+					if ($openid_mode=="checkid_immediate") {
 						$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
 						if (strpos($openid_return_to, '?')) $s = '&'; else $s = '?';
 					
@@ -174,23 +171,15 @@ if (isset($user_webspace)) {
 					
 			}
 		} 	
-		
-		
-		
-		
 	}
 	elseif (!empty($result[0]) && $result[0]['user_live'] != 1 && isset($uri_routing[1])) {
 		// We are answering the registration confirmation email
 		$uri_routing[0] = "register";
 	}
-	else {
+	elseif ((!isset($uri_routing[0])) || ($uri_routing[0] != "register")) {	 
 		$uri_routing[0] = "public";
-	}
+	} 
 }
-elseif (!isset($uri_routing[0]) || $uri_routing[0] != "register") {
-	$uri_routing[0] = "public";
-}
-
 
 // SETUP THEME ---------------------------------------------------------
 if (!empty($webspace['webspace_theme'])) {
@@ -201,8 +190,6 @@ else {
 }
 
 define("SCRIPT_THEME_PATH", "theme/" . SCRIPT_THEME_NAME . "/");
-
-
 
 // OBTAIN SCRIPT NAME --------------------------------------------------
 if (isset($uri_routing[0]) && is_readable(SCRIPT_TEMPLATE_PATH . $uri_routing[0] . '.tpl.php')) {
