@@ -1,0 +1,47 @@
+/*
+// -----------------------------------------------------------------------
+// This file is part of Prairie
+// 
+// Copyright (C) 2003-2008 Barnraiser
+// http://www.barnraiser.org/
+// info@barnraiser.org
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; see the file COPYING.txt.  If not, see
+// <http://www.gnu.org/licenses/>
+// -----------------------------------------------------------------------
+*/
+
+@media print {
+}
+
+@media screen {
+
+}
+
+@media screen,print {
+	label { float: left; width: 160px; margin-right: 10px; }
+	p { margin-bottom: 20px; }
+
+	.box { border-width:0px; }
+	
+	#id_dob_year { width: 65px; }
+	#id_dob_month { width: 45px; }
+	#id_dob_day { width: 45px; }
+
+	#col_full { float: left; }
+	
+	h1 { font-size: 1.2em; }
+	h2, h3 { font-size: 1.0em; }
+	.toc label { float: none; width: 80%; }
+}

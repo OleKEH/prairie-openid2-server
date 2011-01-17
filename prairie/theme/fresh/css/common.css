@@ -1,0 +1,83 @@
+/*
+// -----------------------------------------------------------------------
+// This file is part of Prairie
+// 
+// Copyright (C) 2003-2008 Barnraiser
+// http://www.barnraiser.org/
+// info@barnraiser.org
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; see the file COPYING.txt.  If not, see
+// <http://www.gnu.org/licenses/>
+// -----------------------------------------------------------------------
+*/
+
+@media print {
+}
+
+@media screen {
+
+}
+
+@media screen,print {
+	html,html body {height:100%;}
+	html { margin: 0px; padding: 0px; background-color: #f5f5f5; background-image: url('/theme/fresh/img/body_background.jpg'); background-repeat: repeat-x; }
+	body { color: #333; font-size: 1.0em; min-height:100%; margin:0px; margin-left: auto; margin-right: auto; text-align: left; padding: 0px; width: 838px; font-family: Helvetica, Arial, Lucida Grande, Lucida Sans Unicode, Bitstream Vera Sans, Geneva, sans-serif; }
+
+	a, .span_link { color: #9a35f5; text-decoration: none; cursor: pointer; }
+	a:hover, .span_link:hover { color: #f61646; }
+
+	hr { border-width:0px; border-bottom: 1px solid #e3e1c6; margin-top: 10px; margin-bottom: 20px; }
+	input[type="submit"], input[type="button"] { font-size: 0.8em; color: #fff; font-weight: bold; background-color: #beb9bf; border-style: solid; border-width: 0px 1px 1px 0px; border-color: #afafaf; text-transform: uppercase; }
+	input[type="text"] { padding-left: 4px; }
+	input[type="submit"] { cursor:pointer; }
+	select { padding-left: 4px; }
+	textarea { padding: 2px; font-family: Lucida Grande, Lucida Sans Unicode, Bitstream Vera Sans, Geneva, Helvetica, Arial, sans-serif; font-size: 0.9em; }
+	
+	ul { list-style-type: circle; margin: 12px; padding: 0px; }
+	li { margin: 4px; padding-bottom: 4px; }
+
+	#content_container { min-height: 100%; background-color: #96a5a9; background-image: url('/theme/fresh/img/body_container_background.jpg'); background-repeat: repeat-x; margin:0px; padding: 0px; width: 838px; }
+
+	#header_container { height:80px; margin-left:4px; margin-right: 4px; text-align: right; padding: 4px; font-size: 0.7em; }
+	#header_container ul { margin: 10px; padding:0px; }
+	#header_container li { display: inline; padding: 0px; margin: 0px; padding-left:20px; }
+	#header_container a { color: #636363; text-decoration: none; }
+	#header_container a:hover { color: #f61646; }
+	#header_container .current { color: #000;}
+	#header_title { float:left; margin-left: 10px; margin-bottom: 10px; }
+	
+	#system_error_container { margin:4px; padding:4px; margin-left:14px; margin-right: 14px; color: #b50000; font-size: 0.9em; border: 2px dotted #b50000; }
+
+	#body_container { margin-left: 30px; margin-right: 30px; margin-top: 20px; margin-bottom: 10px;  }
+
+	#footer_container { margin-left:14px; margin-right: 4px; text-align: right; padding: 4px; font-size: 0.7em; }
+	#footer_container ul { margin:10px; padding:0px; }
+	#footer_container li { display: inline; padding: 0px; margin: 0px; padding-left:20px; }
+	#footer_container a { color: #636363; text-decoration: none; }
+	#footer_container a:hover { color: #f61646; }
+	#footer_container .current { color: #000;}
+	
+	.box { background-image: url('/theme/fresh/img/box_background.png'); border: 1px solid #b1b3a8; margin-bottom: 10px; }
+	.box_header { margin:2px; margin-left: 8px; font-size: 0.8em; }
+	.box_header h1 { font-weight: bold; font-size: 1.0em; margin:0px; padding-top: 4px; }
+	.box_body { margin-left: 10px; margin-right: 10px; margin-bottom: 10px; }
+	.box_footer { font-size: 0.7em; text-align: right; margin-left: 10px; margin-right:10px; padding:4px; border-top: 1px dotted #e6e6e6; }
+	.box_footer ul { margin:0px; padding:0px; }
+	.box_footer li { display: inline; margin:0px; padding:0px; padding-left: 4px; white-space: nowrap; }
+
+	.buttons { text-align: right; padding-right: 1px; }
+	.hint { color: #736257; font-size: 0.9em; border: 2px dotted #736257; padding: 6px; }
+	.note { margin-left: 135px; margin-right: 25px; font-size: 0.9em;  font-style:italic; }
+	.warning { color: #b50000; font-size: 0.9em; border: 2px dotted #b50000; padding: 6px; }
+}
