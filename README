@@ -6,8 +6,8 @@ to suit the need :
 -	Contains an profile page connected to your identity, that is useful when commenting posts on others 
 	blogs etc using your openid identity. 
 
-However, the project is closed down, and during install of the alpha 0.2 release, i discovered that it needed some 
-more development to function properly. This implies the following areas: 
+However, the project was closed down (and is now reopend by me), and during install of the alpha 0.2 release, i discovered that 
+it needed some more development to function properly. This implies the following areas: 
 
 -	It was Not fully openid2 compatible (bugfixes and some more implementation)
 -	Lacks implementation of the openid.mode=checkid_immediate
