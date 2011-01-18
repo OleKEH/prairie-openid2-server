@@ -3,12 +3,14 @@ http://www.barnraiser.org/prairie
 
 to suit the need : 
 -	Using subdomain as openid identities makes identity simple to remember and type in. 
--	Contains an profile page connected to your identity, that is useful when commenting posts on others blogs etc using your openid identity. 
+-	Contains an profile page connected to your identity, that is useful when commenting posts on others 
+	blogs etc using your openid identity. 
 
-However, the project is closed down, and during install of the alpha 0.2 release, i discovered that it needed some more development to function properly. 
+However, the project is closed down, and during install of the alpha 0.2 release, i discovered that it needed some 
+more development to function properly. This implies the following areas: 
 
--	Not fully openid2 compatible
--	Lacks implementation of openid.mode=checkid_immediate
+-	It was Not fully openid2 compatible (bugfixes and some more implementation)
+-	Lacks implementation of the openid.mode=checkid_immediate
 -	The profile-editor needed an wysiwyg editor to be more user friendly 
 
 I have done some development work on it that should be public available as the original source from http://www.barnraiser.org/prairie
@@ -17,14 +19,24 @@ I thought of using github repository here in case some others wants to attend th
 
 Changes to this version: 
 -	Implemented the mode “openid.mode=checkid_immediate”. Changes in the class Openid.class.php, trust.php and index.php
+	(The method requires no userer interventions whenever logged in or not, just OK or need login first style). 
 -	Change in index.php to prevent login screen to appear if already logged on when using your openID. 
--	Change in wrapper.tpl.php to include link header for “openid2.provider”, and included script for the tiny_mce editor. 
--	Change in editor.tpl.php to use tiny_mce editor
+-	Change in wrapper.tpl.php to include link header for “openid2.provider”, and included script for the tiny_mce editor.
+	(lack of the link made Relaying Parties to use OpenID 1.1 instead of 2.0) (Facebook trouble) 
+-	Change in editor.tpl.php to use tiny_mce editor (The editor screen needs redesign in order to be nice with this new 
+	editor, but is now functional.
+- 	openid.realm was not implemented, used openid.return_to instead that caused the user to get the whole 'return to' URL presented 
+	when approving connections. This URL is sometimes pretty long and contains lot of unreaable content. This is now fixed. 
 ---------------
 Updates
 - 	Fixed UTC time zone in nonce (using gmdate instead of date) - file class/Openid.class.php
+	(Facebook error: nonce used before or out of range). 
 - 	Fixed support for $openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select' - since there is only one per subdomain, it just throws in the url for your subdomain. 
+	(Facebook are using this). 
 
+More to do: 
+	Implement the following extentions: 
+- 		
 
 
 Best Regards, 
