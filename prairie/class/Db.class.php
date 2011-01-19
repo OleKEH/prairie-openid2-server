@@ -210,4 +210,61 @@ class Database {
 		$this->insertDb($rec, $table);
 	}
 }
+
+class StructureUpdate {
+	
+	var $dbx, $dbtable, $dbfields; 
+	
+	function __construct($db, $table) {
+		$this->dbx = $db; 
+		$this->dbtable = $table; 
+	}
+	
+	function addField ($fieldname, $ftype) {
+		$this->dbfields[$fieldname] = $ftype; 
+	}
+	
+	function syncTableDef () {
+		$missingfields = Array (); 
+		$TableFields = Array (); 
+		$dropfields = Array ();
+		
+		$sql = "SHOW FIELDS FROM `$this->dbtable`"; 
+		$schema_fields = $this->dbx->Execute($sql); 
+		
+		reset ($schema_fields); 
+		foreach ($schema_fields as $column) {
+			
+			$fname=$column['Field']; 
+			// print_r("Felt: ".$fname."\n"); 
+			if (!isset($this->dbfields[$fname])) {
+				$dropfields[$fname]=$this->dbfields[$fname]; 
+			} 
+			$TableFields[$fname]=$column['Field'];
+		}
+		
+		reset ($this->dbfields); 
+		foreach ($this->dbfields as $key => $value) {	
+			if (!isset($TableFields[$key])) {
+				$missingfields[$key]=$value; 
+			}
+		}
+		//print_r($missingfields); 
+		$pref=""; 
+		if (!empty($missingfields)) {
+			$sql = "ALTER TABLE `".$this->dbtable."` "; 
+			reset ($missingfields); 
+			foreach ($missingfields as $key => $value) {
+				$sql.= $pref."ADD COLUMN `".$key."` ".$value; 
+				if (!$pref) $pref=", "; 
+			}
+			$sql.=";";
+			$StatusMessage = "\n".$sql;
+			$StatusMessage .=  "<br>Status: " . print_r($this->dbx->Execute($sql), true);
+		}
+	}
+}
+
+
+
 ?>

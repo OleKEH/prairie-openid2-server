@@ -117,9 +117,49 @@
 				<input type="text" name="user_location" id="id_user_location" value="<?php if (isset($_SESSION['user_location'])) echo $_SESSION['user_location']; ?>" />
 			</p>
 			
+			<p class="warning">
+				<?php echo _("The following info may be exchanged with a third party when using your openID to simplify the registration process. The fields below are optional");?>
+			</p>
+			
+			<p>
+				<label for="id_user_nick"><?php echo _("Nickname");?></label>
+				<input type="text" name="user_nick" id="id_user_nick" value="<?php if (isset($_SESSION['user_nick'])) echo $_SESSION['user_nick']; ?>" />
+			</p>
+			<p>
+				<label for="id_user_gender"><?php echo _("Gender (M/F)");?></label>
+				<input type="text" name="user_gender" id="id_user_gender" value="<?php if (isset($_SESSION['user_gender'])) echo $_SESSION['user_gender']; ?>" />
+			</p>
+			
+			<p>
+				<label for="id_user_postcode"><?php echo _("Postcode");?></label>
+				<input type="text" name="user_postcode" id="id_user_postcode" value="<?php if (isset($_SESSION['user_postcode'])) echo $_SESSION['user_postcode']; ?>" />
+			</p>
+			
+			<p>
+				<label for="id_user_country"><?php echo _("Country code");?></label>
+				<input type="text" name="user_country" id="id_user_country" value="<?php if (isset($_SESSION['user_country'])) echo $_SESSION['user_country']; ?>" />
+			</p>
+		
+		
+			<p>
+				<label for="id_user_language"><?php echo _("Preferred Language (EN)");?></label>
+				<input type="text" name="user_language" id="id_user_language" value="<?php if (isset($_SESSION['user_language'])) echo $_SESSION['user_language']; ?>" />
+			</p>
+			
+			<p>
+				<label for="id_user_timezone"><?php echo _("Timezone (Europe/Paris)");?></label>
+				<input type="text" name="user_timezone" id="id_user_timezone" value="<?php if (isset($_SESSION['user_timezone'])) echo $_SESSION['user_timezone']; ?>" />
+			</p>
+			
+			<p>
+				<label for="id_user_birthdate"><?php echo _("Birthdate (YYYY-MM-DD)");?></label>
+				<input type="text" name="user_birthdate" id="id_user_birthdate" value="<?php if (isset($_SESSION['user_birthdate'])) echo $_SESSION['user_birthdate']; ?>" />
+			</p>
+			
 			<p class="buttons">
 				<input type="submit" name="save_profile_information" value="<?php echo _("save");?>" />
 			</p>
+			
 		</div>
 	</div>
 	</form>

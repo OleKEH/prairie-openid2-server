@@ -155,9 +155,9 @@ class OpenidServer {
 	
 	// a simple debug-function.
 	// remove this later.
-	function _debug($arr=null) {
+	function _debug($arr=null, $filename="debug_array.txt") {
 		if (!empty($arr)) {
-			$f = 'debug_array.txt';
+			$f = $filename;
 		}
 		elseif (isset($_POST['openid_mode'])) {
 			$f = 'debug_' . $_POST['openid_mode'] . '.txt';
@@ -316,6 +316,67 @@ class OpenidServer {
 		return 1;
 	}
 	
+	function sreg_extention ($datax=array()) {
+		$sregflt = false; 
+		$fieldswanted = Array (); 
+		$this->_debug(); 
+		if (isset($_GET['openid_sreg_required'])) {
+			$reqfields = explode (",", $_GET['openid_sreg_required']); 
+			foreach ($reqfields as $flt) {
+				$fieldswanted[$flt]="REQUIRED"; 
+			}
+		}
+		if (isset($_GET['openid_sreg_optional'])) {
+			$optfields = explode (",", $_GET['openid_sreg_optional']); 
+			foreach ($optfields as $flt) {
+				$fieldswanted[$flt]="OPTIONAL"; 
+			}
+		}
+		$this->_debug($fieldswanted);
+		if (!empty($fieldswanted)) { 
+			reset ($fieldswanted); 
+			foreach ($fieldswanted as $flt => $recopt) {
+				switch (trim($flt)) {
+					case  ("nickname") : 
+						$value=$_SESSION['user_nick'];
+						break; 
+					case  ("email") : 
+						$value=$_SESSION['user_email'];
+						break; 
+					case  ("fullname") : 
+						$value=$_SESSION['user_name'];
+						break; 
+					case  ("dob") : 
+						$value=$_SESSION['user_birthdate'];
+						break; 
+					case  ("gender") : 
+						$value=$_SESSION['user_gender'];
+						break; 
+					case  ("postcode") : 
+						$value=$_SESSION['user_postcode'];
+						break; 
+					case  ("country") : 
+						$value=$_SESSION['user_country'];
+						break; 
+					case  ("language") : 
+						$value=$_SESSION['user_language'];
+						break; 
+					case  ("timezone") : 
+						$value=$_SESSION['user_timezone'];
+						break; 
+				}
+				if ($value) {
+					$opcode="openid.sreg.".$flt; 
+					$datax[$opcode] = $value; 
+					$sregflt = true; 
+				}
+			}	
+		}
+		
+	} 
+	
+	
+	
 	// see section 10 of specification
 	function checkid_setup($type = null) {
 		//$this->_debug();
@@ -356,6 +417,9 @@ class OpenidServer {
 				// we had to do this for bloggr. is ok?
 				$data_to_send['openid.assoc_handle'] = $this->assoc_handle();
 			}
+			
+			$this->sreg_extention (&$data_to_send);
+			
 			
 			$signed = '';
 			foreach($data_to_send as $key => $v) {
@@ -433,6 +497,8 @@ class OpenidServer {
 				// we had to do this for bloggr. is ok?
 				$data_to_send['openid.assoc_handle'] = $this->assoc_handle();
 			}
+			
+			$this->sreg_extention (&$data_to_send); 
 			
 			$signed = '';
 			foreach($data_to_send as $key => $v) {

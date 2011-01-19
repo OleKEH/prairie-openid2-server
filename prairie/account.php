@@ -67,10 +67,15 @@ elseif (isset($_POST['save_profile_information'])) {
 			SET 
 			user_name=" . $db->qstr($_POST['user_name']) . ",
 			user_dob=" . $db->qstr($dob) . ",
-			user_location=" . $db->qstr($_POST['user_location']) . " 
-			WHERE
-			user_id=" . $_SESSION['user_id']
-		;
+			user_location=" . $db->qstr($_POST['user_location']) .",
+			user_nick=" . $db->qstr($_POST['user_nick']) . ",
+			user_gender=" . $db->qstr($_POST['user_gender']) . ",
+			user_postcode=" . $db->qstr($_POST['user_postcode']) . ",
+			user_country=" . $db->qstr($_POST['user_country']) . ",
+			user_language=" . $db->qstr($_POST['user_language']) . ",
+			user_timezone=" . $db->qstr($_POST['user_timezone']) . ",
+			user_birthdate=" . $db->qstr($_POST['user_birthdate']) . "
+			WHERE user_id=" . $_SESSION['user_id'].";";
 
 		$db->Execute($query);
 		
@@ -78,7 +83,14 @@ elseif (isset($_POST['save_profile_information'])) {
 			$_SESSION['user_name'] = $_POST['user_name'];
 			$_SESSION['user_dob'] = $dob;
 			$_SESSION['user_location'] = $_POST['user_location'];
-
+			$_SESSION['user_nick'] = $_POST['user_nick'];
+			$_SESSION['user_gender'] = $_POST['user_gender'];
+			$_SESSION['user_postcode'] = $_POST['user_postcode'];
+			$_SESSION['user_country'] = $_POST['user_country'];
+			$_SESSION['user_language'] = $_POST['user_language'];
+			$_SESSION['user_timezone'] = $_POST['user_timezone'];
+			$_SESSION['user_birthdate'] = $_POST['user_birthdate'];
+			
 			// success message
 			$GLOBALS['script_message_log'][] = _("Your profile information was updated.");
 		}

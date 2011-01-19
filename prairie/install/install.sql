@@ -18,6 +18,10 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program; see the file COPYING.txt.  If not, see
 -- <http:--www.gnu.org/licenses/>
+-- 
+-- NETT TECH: 
+-- Updated the user table for new columns user_nic..user_bio to store 
+-- neccessary data for the SREG extention. 19.01.2011
 -------------------------------------------------------------------------
 
 
@@ -57,6 +61,14 @@ CREATE TABLE IF NOT EXISTS `prairie_user` (
   `user_registration_key` varchar(100) default NULL,
   `user_live` int(1) NOT NULL default '0',
   `user_create_datetime` datetime NOT NULL,
+  `user_nick` VARCHAR(45) NULL DEFAULT NULL, 
+  `user_gender` VARCHAR(10) NULL DEFAULT NULL, 
+  `user_postcode` VARCHAR(45) NULL DEFAULT NULL, 
+  `user_country` VARCHAR(45) NULL DEFAULT NULL, 
+  `user_language` VARCHAR(45) NULL DEFAULT NULL, 
+  `user_timezone` VARCHAR(45) NULL DEFAULT NULL,
+  `user_bio` text NOT NULL,
+  `user_birthdate` date NOT NULL,
   PRIMARY KEY  (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

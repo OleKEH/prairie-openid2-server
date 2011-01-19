@@ -1,3 +1,22 @@
+Changes to Alfa-0.3 version. 
+------------------------------
+
+Included SREG extention to exchange more profiledata upon request from the relaying Party. This 
+setting can be updated in the account page. 
+
+Its not yet presenting the user what data is exchanged, but the user may chose what to fill in
+on the account page. This screen will be the next update. 
+
+if this installation of this is an upgrade to earlier versions of prairie, you can easely 
+update the database by running the script: 
+http://your-openid/checkdbconfig
+
+Then the new fields in the database is automatically added. 
+
+This release also contains change to the editor screen to look nicer with the tiny_mce wysiwyg editor
+
+
+--------------------------------
 In search for a lightweight openid server, i found prairie at 
 http://www.barnraiser.org/prairie
 

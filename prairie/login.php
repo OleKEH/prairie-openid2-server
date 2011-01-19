@@ -61,6 +61,14 @@ if (isset($_POST['login_admin'])) {
 			$_SESSION['user_location'] = $result[0]['user_location'];
 			$_SESSION['user_dob'] = $result[0]['user_dob'];
 			
+			$_SESSION['user_nick'] = $result[0]['user_nick'];
+			$_SESSION['user_gender'] = $result[0]['user_gender'];
+			$_SESSION['user_postcode'] = $result[0]['user_postcode'];
+			$_SESSION['user_country'] = $result[0]['user_country'];
+			$_SESSION['user_language'] = $result[0]['user_language'];
+			$_SESSION['user_timezone'] = $result[0]['user_timezone'];
+			$_SESSION['user_birthdate'] = $result[0]['user_birthdate'];
+			
 			if (isset($_GET['openid_mode'])) {
 				header('location: /trust?' . http_build_query($_GET));
 				exit;
