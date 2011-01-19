@@ -26,12 +26,34 @@
 }
 
 @media screen {
-	#col_left { float:left; display: inline; width: 370px; }
-	#col_right { float:left; width: 370px;  margin-left:30px; }
 
-	#id_html { height: 300px; width: 90%; }
-	#id_css { height: 200px; width: 90%; }
+div#box_html.box2 {
+	height: 800px;
 }
+
+div.box_body {
+}
+	#col_left { float:left; display: inline;
+	width: 720px;
+	margin-left: 30px;
+	}
+
+	#id_webspace_title {
+	width: 600px;
+	}
+	#col_right { float:left; width: 720px;  margin-left:30px;
+	}
+
+	#id_html { width: 90%;
+	height: 500px;
+	}
+
+	#id_css { height: 200px; width: 90%;
+	display: block;
+}
+
+}
+
 
 @media screen,print {
 	#id_theme_thumb { width:348px; height:240px; border:1px solid #e6e6e6; margin-bottom: 10px; }

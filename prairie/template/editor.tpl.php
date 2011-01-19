@@ -83,7 +83,7 @@
 
 <div id="col_right">
 	<form method="post">
-	<div class="box" id="box_html">
+	<div class="box2" id="box_html">
 		<div class="box_header">
 			<h1><?php echo _("Content markup");?></h1>
 		</div>
