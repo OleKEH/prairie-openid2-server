@@ -319,7 +319,7 @@ class OpenidServer {
 	function sreg_extention ($datax=array()) {
 		$sregflt = false; 
 		$fieldswanted = Array (); 
-		$this->_debug(); 
+	//	$this->_debug(); 
 		if (isset($_GET['openid_sreg_required'])) {
 			$reqfields = explode (",", $_GET['openid_sreg_required']); 
 			foreach ($reqfields as $flt) {
@@ -332,7 +332,7 @@ class OpenidServer {
 				$fieldswanted[$flt]="OPTIONAL"; 
 			}
 		}
-		$this->_debug($fieldswanted);
+//		$this->_debug($fieldswanted);
 		if (!empty($fieldswanted)) { 
 			reset ($fieldswanted); 
 			foreach ($fieldswanted as $flt => $recopt) {
@@ -451,7 +451,6 @@ class OpenidServer {
 			if (strpos($openid_return_to, $s)) {
 				$s = '&';
 			}
-	//	$this->_debug($data_to_send);
 			// send us back to the consumer
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
@@ -468,9 +467,13 @@ class OpenidServer {
 	
 	// see section 9.3 of specification
 	function checkid_immediate() {
-
+	//	$this->_debug(); 
 		$openid_identity = isset($_GET['openid_identity']) ? $_GET['openid_identity'] : '';
 		$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
+		
+		if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
+			$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
+		}	
 		
 		if (!empty($_SESSION['user_id'])) {
 					
@@ -531,7 +534,8 @@ class OpenidServer {
 			if (strpos($openid_return_to, $s)) {
 				$s = '&';
 			}
-		
+//	$this->_debug($data_to_send);
+			
 			// send us back to the consumer
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
@@ -543,7 +547,7 @@ class OpenidServer {
 			$data_to_send['openid.ns'] = 'http://specs.openid.net/auth/2.0';
 			$data_to_send['openid.mode'] = 'setup_needed';
 			$data_to_send['openid.user_setup_url'] = $this->server_url();
-			
+			$this->debug($data_to_send); 
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
 			

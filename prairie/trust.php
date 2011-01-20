@@ -27,7 +27,7 @@
 require_once('class/Openid.class.php');
 
 $server = new OpenidServer($db, $core_config['security']['openid_encryption_level']);
-
+//$server->_debug(); 
 if (isset($_POST['trust'])) {
 	
 	if (isset($_GET['openid_trust_root'])) {
