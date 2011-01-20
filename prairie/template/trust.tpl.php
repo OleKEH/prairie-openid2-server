@@ -25,6 +25,19 @@
 ?>
 
 <?php
+$fields=""; 
+if ($_SERVER["REQUEST_METHOD"]=="POST"){
+	reset ($_POST); 
+	foreach ($_POST as $key=>$value) {
+		$fields .= input_($key, $value, "hidden"); 
+	}
+} else {
+	reset ($_GET); 
+	foreach ($_GET as $key=>$value) {
+		$fields .= input_($key, $value, "hidden"); 
+	}
+}
+
 if (isset($trust)) {
 
 $trust_string = _("You are about to login to <a href='{1}'>{1}</a>. You have done this {2} times before. Last login datetime: {3}");
@@ -45,4 +58,5 @@ $trust_string = str_replace('{1}', $trust_url, $trust_string);
 <form method="post">
 <input type="submit" name="cancel" value="<?php echo _("cancel");?>" />
 <input type="submit" name="trust" value="<?php echo _("proceed");?>" />
+<?php echo $fields; ?>
 </form>

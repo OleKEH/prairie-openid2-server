@@ -141,12 +141,7 @@ if (isset($user_webspace)) {
 		
 		// check if called from consumer : Do not log in if allready logged on before. 
 		if (isset($uri_routing[0]) && ($uri_routing[0]=="login")) {
-			if (isset($_POST['openid_mode'])) {
-				$openid_mode = $_POST['openid_mode'];
-			}
-			elseif (isset($_GET['openid_mode'])) {
-				$openid_mode = $_GET['openid_mode'];
-			} else $openid_mode = ""; 
+			$openid_mode = GetFromURL("openid_mode"); 
 			
 			if ($openid_mode) 
 			{
@@ -155,7 +150,7 @@ if (isset($user_webspace)) {
 				} else {
 					
 					if ($openid_mode=="checkid_immediate") {
-						$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
+						$openid_return_to = GetFromURL("openid_return_to");
 						if (strpos($openid_return_to, '?')) $s = '&'; else $s = '?';
 					
 						$data_to_send = Array ();

@@ -22,6 +22,104 @@
 // <http://www.gnu.org/licenses/>
 // -----------------------------------------------------------------------
 
+function GetFromURL ($param) {
+	if ($_SERVER["REQUEST_METHOD"]=="GET") {
+		if (isset ($_GET[$param])) return $_GET[$param]; 
+		else return ""; 
+	} else {
+		if (isset ($_POST[$param])) return $_POST[$param];
+		else return ""; 
+	}
+}
+
+function table_($width=0, $style="", $border=0) {
+	if ($width==0) $html="</table>\n";
+	else {
+		$html="<table"; 
+		if ($style!="") $html .= " class='". $style . "'"; 
+		$html .= ' width="'.$width.'%" border="'. $border. '">'."\n"; 
+	}
+	return $html; 
+}
+
+function tr_($content="/", $style="", $option="") {
+	if ($content == "/") $html="</tr>\n"; 
+	else {
+		$html="<tr"; 
+		if ($style!="") $html .= " class ='".$style."'";
+		if ($option!="") $html .= $option; 
+		if ($content!="") $html .=">".$content."</tr>\n"; 
+		else $html .=">";  
+	}	
+	return $html; 
+}
+
+function td_($content="/", $style="", $width=0, $colspan=1, $option="") {
+	if ($content == "/") $html="</td>\n"; 
+	else {
+		$html="<td"; 
+		if ($colspan!=1) $html.=' colspan="'.$colspan.'"';
+		if ($width!=0) $html.=' width="'.$width.'%"'; 
+		if ($style!="") $html .= " class ='".$style."'";
+		if ($option!="") $html .= $option; 
+		if ($content!="") $html .=">".$content."</td>\n"; 
+		else $html .=">";  
+	}	
+	return $html; 
+}
+
+function tdt_($content="/", $style="", $option="") {
+	if ($content == "/") $html="</td>\n"; 
+	else {
+		$html='<td valign="top"'; 
+		if ($style!="") $html .= " class ='".$style."'";
+		if ($option!="") $html .= $option; 
+		if ($content!="") $html .=">".$content."</td>\n"; 
+		else $html .=">";  
+	}	
+	return $html; 
+}
+
+function b_($content){
+	return "<b>".$content."</b>"; 
+}
+function c_ ($content){
+	return "<center>".$content."</center>"; 
+}
+function form_($action="", $method="POST", $style="") {
+	if ($action=="") $html="</form>\n"; 
+	else {
+		$html='<form action="'.$action.'" method="'.$method.'"'; 
+		if ($style!="") $html .= ' class="'.$style.'"'; 
+		$html .=">\n"; 
+	}
+	return $html; 
+}
+
+function checkbox_($name, $defval="") {
+	// '<input name="xxid" type="checkbox" id="xxid" value="1" checked>'
+	$html='<input name="'.$name.'" type="checkbox" id="'.$name.'" value="1"'; 
+	if (($defval) && ($defval!="0") && ($defval!="false")) $html.=" checked"; 
+	$html.=">\n"; 
+	return $html; 
+}
+
+function input_($name,  $defval="", $type="text", $size=45, $maxlength=0, $style=""){
+	$html='<input'; 
+	if ($style)$html.=' class="'.$style.'"'; 
+	$html .=' name="'.$name.'" type="'.$type.'" value="'.$defval.'"'; 
+	$html .= ' id="'.$name.'" size="'.$size.'"'; 
+	if ($maxlength!=0) $html.=' maxlength="'.$maxlength.'"'; 
+	$html.="/>\n"; 
+	return $html; 
+}
+function textarea_($name, $content="", $cols=60, $rows=4, $style="" ) {
+	$html='<textarea name="'.$name.'" cols="'.$cols.'" rows="'.$rows.'"';  
+	if ($style!="") $html.= ' class="'.$style.'"';
+	$html.='>'.$content."</textarea>\n"; 
+	return $html; 
+}
+
 
 // URL routing into array
 function routeURL ($webspace_name=null) {

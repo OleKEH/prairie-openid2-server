@@ -28,16 +28,22 @@ require_once('class/Openid.class.php');
 
 $server = new OpenidServer($db, $core_config['security']['openid_encryption_level']);
 //$server->_debug(); 
-if (isset($_POST['trust'])) {
+$opneIDtrust = GetFromURL("trust"); 
+$openIDtrustroot = GetFromURL("openid_trust_root"); 
+$openIDrealm = GetFromURL("openid_realm"); 
+$openIDreturnTo = GetFromURL("openid_return_to"); 
+$openIDMode = GetFromURL("openid_mode"); 
 	
-	if (isset($_GET['openid_trust_root'])) {
-		$trust_url = $server->normalize($_GET['openid_trust_root']);
+if (isset($_POST['trust'])) {
+
+	if ($openIDtrustroot) {
+		$trust_url = $server->normalize($openIDtrustroot);
 	}
-	elseif (isset($_GET['openid_realm'])) {
-		$trust_url = $server->normalize($_GET['openid_realm']);
+	elseif ($openIDrealm) {
+		$trust_url = $server->normalize($openIDrealm);
 	}
 	else {
-		$trust_url = $server->normalize($_GET['openid_return_to']);
+		$trust_url = $server->normalize($openIDreturnTo);
 	}
 
 	$query = "
@@ -73,18 +79,18 @@ if (isset($_POST['trust'])) {
 	}
 }
 elseif (isset($_POST['cancel'])) {
-	header("Location: " . $_GET['openid_return_to']);
+	header("Location: " . $openIDreturnTo);
 	exit;
 }
 else {
-	if (isset($_GET['openid_trust_root'])) {
-		$trust_url = $server->normalize($_GET['openid_trust_root']);
+	if ($openIDtrustroot) {
+		$trust_url = $server->normalize($openIDtrustroot);
 	}
-	elseif (isset($_GET['openid_realm'])) {
-		$trust_url = $server->normalize($_GET['openid_realm']);
+	elseif ($openIDrealm) {
+		$trust_url = $server->normalize($openIDrealm);
 	}
 	else {
-		$trust_url = $server->normalize($_GET['openid_return_to']);
+		$trust_url = $server->normalize($openIDreturnTo);
 	}
 
 	$query = "
@@ -103,11 +109,8 @@ else {
 	}
 }
 
-if (isset($_POST['openid_mode'])) {
-	$openid_mode = $_POST['openid_mode'];
-}
-elseif (isset($_GET['openid_mode']) && !isset($_POST['login'])) {
-	$openid_mode = $_GET['openid_mode'];
+if ($openIDMode) {
+	$openid_mode = $openIDMode; 
 }
 
 

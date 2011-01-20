@@ -68,9 +68,13 @@ if (isset($_POST['login_admin'])) {
 			$_SESSION['user_language'] = $result[0]['user_language'];
 			$_SESSION['user_timezone'] = $result[0]['user_timezone'];
 			$_SESSION['user_birthdate'] = $result[0]['user_birthdate'];
-			
-			if (isset($_GET['openid_mode'])) {
-				header('location: /trust?' . http_build_query($_GET));
+			$openIDMode = GetFromURL("openid_mode"); 
+			if ($openIDMode) {
+				if ($_SERVER["REQUEST_METHOD"]="GET") {
+					header('location: /trust?' . http_build_query($_GET));
+				} else {
+					header('location: /trust?' . http_build_query($_POST));
+				}
 				exit;
 			}
 			else {
@@ -160,13 +164,8 @@ elseif (isset($_POST['submit_new_password'])) {
 }
 
 
-
-if (isset($_POST['openid_mode'])) {
-	$openid_mode = $_POST['openid_mode'];
-}
-elseif (isset($_GET['openid_mode']) && !isset($_POST['login'])) {
-	$openid_mode = $_GET['openid_mode'];
-}
+$openIDMode=GetFromURL ("openid_mode"); 
+if ($openIDMode) $openid_mode = $openIDMode; 
 
 require_once('class/Openid.class.php');
 

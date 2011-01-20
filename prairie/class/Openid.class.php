@@ -320,14 +320,16 @@ class OpenidServer {
 		$sregflt = false; 
 		$fieldswanted = Array (); 
 	//	$this->_debug(); 
-		if (isset($_GET['openid_sreg_required'])) {
-			$reqfields = explode (",", $_GET['openid_sreg_required']); 
+		$values = GetFromURL("openid_sreg_required"); 
+		if ($values) {
+			$reqfields = explode (",", $values); 
 			foreach ($reqfields as $flt) {
 				$fieldswanted[$flt]="REQUIRED"; 
 			}
 		}
-		if (isset($_GET['openid_sreg_optional'])) {
-			$optfields = explode (",", $_GET['openid_sreg_optional']); 
+		$values = GetFromURL("openid_sreg_optional"); 
+		if ($values) {
+			$optfields = explode (",", $values); 
 			foreach ($optfields as $flt) {
 				$fieldswanted[$flt]="OPTIONAL"; 
 			}
@@ -379,39 +381,36 @@ class OpenidServer {
 	
 	// see section 10 of specification
 	function checkid_setup($type = null) {
-		//$this->_debug();
+//		$this->_debug();
 		if (!empty($_SESSION['user_id']) && isset($_POST['trust'])) {
 			
-			$openid_identity = isset($_GET['openid_identity']) ? $_GET['openid_identity'] : '';
-			$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
+			$openid_identity = GetFromURL("openid_identity"); 
+			$openid_return_to = GetFromURL("openid_return_to"); 
 			
 			if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
 				$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
 			}
 			
-			
-			if (!empty($_GET['openid_ns']) && $_GET['openid_ns'] == 'http://specs.openid.net/auth/2.0') {
+			$openIDns=GetFromURL("openid_ns"); 
+			if ($openIDns == 'http://specs.openid.net/auth/2.0') {
 				$data_to_send['openid.ns'] = 'http://specs.openid.net/auth/2.0';
 				$this->openid_version = 2;
-			}
+			} else $this->openid_version = 1;
 			
-			if (!empty($_GET['openid_identity']) && $_GET['openid_identity'] == 'http://specs.openid.net/auth/2.0/identifier_select') {
-				$data_to_send['openid.identity'] = $openid_identity;	
-			}
+			$data_to_send['openid.identity'] = $openid_identity;	
 						
 			$data_to_send['openid.mode'] = 'id_res';
 			
-			if (isset($this->openid_version) && $this->openid_version == 2) {
+			if ($this->openid_version == 2) {
 				$data_to_send['openid.op_endpoint'] = $this->server_url();
 				$data_to_send['openid.claimed_id'] = $openid_identity;
 				$data_to_send['openid.response_nonce'] = gmdate('Y-m-d') . 'T' . gmdate('H:i:s') . 'ZUNIQUE';
 			}
 			
-			$data_to_send['openid.identity'] = $openid_identity;
 			$data_to_send['openid.return_to'] = $openid_return_to;
-			
-			if (!empty($_GET['openid_assoc_handle'])) {
-				$data_to_send['openid.assoc_handle'] = $_GET['openid_assoc_handle'];
+			$assocHandle = GetFromURL("openid_assoc_handle"); 
+			if ($assocHandle) {
+				$data_to_send['openid.assoc_handle'] = $assocHandle; 
 			}
 			else {
 				// we had to do this for bloggr. is ok?
@@ -451,7 +450,8 @@ class OpenidServer {
 			if (strpos($openid_return_to, $s)) {
 				$s = '&';
 			}
-			// send us back to the consumer
+//			$this->_debug($data_to_send);
+			 // send us back to the consumer
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
 		}
@@ -468,40 +468,42 @@ class OpenidServer {
 	// see section 9.3 of specification
 	function checkid_immediate() {
 	//	$this->_debug(); 
-		$openid_identity = isset($_GET['openid_identity']) ? $_GET['openid_identity'] : '';
-		$openid_return_to = isset($_GET['openid_return_to']) ? $_GET['openid_return_to'] : '';
-		
+		$openid_identity = GetFromURL("openid_identity"); 
+		$openid_return_to = GetFromURL("openid_return_to"); 
+					
 		if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
 			$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
 		}	
 		
 		if (!empty($_SESSION['user_id'])) {
-					
-			if (!empty($_GET['openid_ns']) && $_GET['openid_ns'] == 'http://specs.openid.net/auth/2.0') {
+								
+			$openIDns=GetFromURL("openid_ns"); 
+			if ($openIDns == 'http://specs.openid.net/auth/2.0') {
 				$data_to_send['openid.ns'] = 'http://specs.openid.net/auth/2.0';
 				$this->openid_version = 2;
-			} 
+			} else $this->openid_version = 1;
 			
+			$data_to_send['openid.identity'] = $openid_identity;	
+						
 			$data_to_send['openid.mode'] = 'id_res';
 			
-			if (isset($this->openid_version) && $this->openid_version == 2) {
+			if ($this->openid_version == 2) {
 				$data_to_send['openid.op_endpoint'] = $this->server_url();
 				$data_to_send['openid.claimed_id'] = $openid_identity;
 				$data_to_send['openid.response_nonce'] = gmdate('Y-m-d') . 'T' . gmdate('H:i:s') . 'ZUNIQUE';
 			}
 			
-			$data_to_send['openid.identity'] = $openid_identity;
 			$data_to_send['openid.return_to'] = $openid_return_to;
-			
-			if (!empty($_GET['openid_assoc_handle'])) {
-				$data_to_send['openid.assoc_handle'] = $_GET['openid_assoc_handle'];
+			$assocHandle = GetFromURL("openid_assoc_handle"); 
+			if ($assocHandle) {
+				$data_to_send['openid.assoc_handle'] = $assocHandle; 
 			}
 			else {
 				// we had to do this for bloggr. is ok?
 				$data_to_send['openid.assoc_handle'] = $this->assoc_handle();
 			}
 			
-			$this->sreg_extention (&$data_to_send); 
+			$this->sreg_extention (&$data_to_send);
 			
 			$signed = '';
 			foreach($data_to_send as $key => $v) {
