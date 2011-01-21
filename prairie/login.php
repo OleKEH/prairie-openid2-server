@@ -69,10 +69,13 @@ if (isset($_POST['login_admin'])) {
 			$_SESSION['user_timezone'] = $result[0]['user_timezone'];
 			$_SESSION['user_birthdate'] = $result[0]['user_birthdate'];
 			$openIDMode = GetFromURL("openid_mode"); 
+			
 			if ($openIDMode) {
-				if ($_SERVER["REQUEST_METHOD"]="GET") {
+				if ($_SERVER["REQUEST_METHOD"]=="GET") {
 					header('location: /trust?' . http_build_query($_GET));
 				} else {
+					unset ($_POST["login_email"]); 
+					unset ($_POST["login_password"]); 
 					header('location: /trust?' . http_build_query($_POST));
 				}
 				exit;

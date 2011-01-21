@@ -162,6 +162,21 @@
 
 		<div class="box_body">
 			<?php
+			
+			$fields=""; 
+			if ($_SERVER["REQUEST_METHOD"]=="POST"){
+				reset ($_POST); 
+				foreach ($_POST as $key=>$value) {
+					$fields .= input_($key, $value, "hidden"); 
+				}
+			} else {
+				reset ($_GET); 
+				foreach ($_GET as $key=>$value) {
+					$fields .= input_($key, $value, "hidden"); 
+				}
+			}
+			
+			
 			if (isset($login_email_required)) {
 			?>
 			<p>
@@ -174,7 +189,7 @@
 				<label for="id_login_password"><?php echo _("Password");?></label>
 				<input type="password" id="id_login_password" value="" name="login_password" />
 			</p>
-
+			<?php echo $fields; ?>
 			<p class="buttons">
 				<input type="submit" name="login_admin" value="<?php echo _("log in");?>" />
 			</p>
