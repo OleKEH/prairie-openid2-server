@@ -23,8 +23,7 @@
 // -----------------------------------------------------------------------
 
 $font = "DejaVuSans-ExtraLight.ttf";
-$color = "#666666";
-$background_color = "#FFFFFF";
+$color = "#FFFFFF";
+$background_color = "blue";
 $font_size = 40;
-
 ?>

@@ -27,11 +27,10 @@
 // tables. To run this manually (after upgrade) - run: http://<yourdomain>/checkdbconfig 
 // once to add new fields that needs to be added to the database.  
 
-/*
- * -- -----------------------------------------------------
--- Table `prairie_user`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `prairie_user` (
+
+
+$userTable = new StructureUpdate ($db, "prairie_user"); 
+$userTable->checkCreate("CREATE  TABLE IF NOT EXISTS `prairie_user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT ,
   `openid_name` VARCHAR(100) NOT NULL ,
   `user_name` VARCHAR(255) NOT NULL ,
@@ -50,12 +49,8 @@ CREATE  TABLE IF NOT EXISTS `prairie_user` (
   `user_timezone` VARCHAR(45) NULL ,
   PRIMARY KEY (`user_id`) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = utf8;"); 
 
- */
-
-$userTable = new StructureUpdate ($db, "prairie_user"); 
 $userTable->addField('user_id', 'INT(11) NOT NULL AUTO_INCREMENT'); 
 $userTable->addField('openid_name', 'VARCHAR(100) NOT NULL'); 
 $userTable->addField('user_name', 'VARCHAR(255) NOT NULL'); 
@@ -73,7 +68,29 @@ $userTable->addField('user_country', 'VARCHAR(45) NULL');
 $userTable->addField('user_language', 'VARCHAR(45) NULL'); 
 $userTable->addField('user_timezone', 'VARCHAR(45) NULL'); 
 $userTable->addField('user_bio', 'TEXT NULL'); 
-$userTable->addField('user_birthdate', 'DATE NULL');
+$userTable->addField('user_birthdate', 'DATE NOT NULL');
 $userTable->syncTableDef(); 
+
+
+$articletable = new StructureUpdate($db, "prairie_articles"); 
+$articletable->checkCreate("CREATE  TABLE IF NOT EXISTS `prairie_articles` (
+  `art_id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `user_id` INT(11) NOT NULL ,
+  `art_Title` VARCHAR(100) NULL ,
+  `art_html` TEXT NOT NULL ,
+  `art_menutext` VARCHAR(45) NOT NULL ,
+  `art_order` INT NULL ,
+  PRIMARY KEY (`art_id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;"); 
+$articletable->addField('art_id', 'INT(11) NOT NULL AUTO_INCREMENT'); 
+$articletable->addField('user_id', 'INT(11) NOT NULL'); 
+$articletable->addField('art_Title', 'VARCHAR(100) NULL'); 
+$articletable->addField('art_html', 'TEXT NOT NULL'); 
+$articletable->addField('art_menutext', 'VARCHAR(45) NOT NULL'); 
+$articletable->addField('art_order', 'INT NULL'); 
+$articletable->syncTableDef();
+
+
 
 ?>

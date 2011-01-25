@@ -22,9 +22,7 @@
 // <http://www.gnu.org/licenses/>
 // -----------------------------------------------------------------------
 
-?>
 
-<?php
 if (isset($webspace['webspace_css'])) {
 ?>
 <style type="text/css">
@@ -32,98 +30,33 @@ if (isset($webspace['webspace_css'])) {
 	<?php echo $webspace['webspace_css'];?>
 	-->
 	</style>
-<?php }?>
+<?php 
+
+}
+ 
+
+	$emailForm = labelinput_("contact_email", _("Email address"));
+	$emailForm.= note_(_("Your email address will be sent to me to allow me to reply. It is not kept.")); 
+	$emailForm.= labelinput_("contact_subject", _("Subject")); 
+	$emailForm.= labeltextarea_("contact_message", _("Message")); 
+	$emailForm.= p_(_("Please solve the following mathematical problem so that we know you are a human.")); 
+	$emailForm.= labelinput_("maptcha_text", $maptcha, "", "id_p_captcha", "id_captcha")."<br>"; 
+	$emailForm.= note_(_("Example: 2 * 2 = 4 or 0 - 9 = -9")); 
+	$emailForm.= p_(input_("submit_contact_form", _("send"), "submit"), "buttons"); 
 
 
-<div id="col_left">
-	<div class="box" id="box_contact">
-		<div class="box_header">
-			<h1><?php echo _("Email me");?></h1>
-		</div>
 
-		<form method="post">
-		<div class="box_body">
-			<p>
-				<label for="id_contact_email"><?php echo _("Email");?></label>
-				<input type="text" name="contact_email" id="id_contact_email" />
-			</p>
-
-			<p class="note">
-				<?php echo _("Your email address will be sent to me to allow me to reply. It is not kept.");?>
-			</p>
-
-			<p>
-				<label for="id_contact_subject"><?php echo _("Subject");?></label>
-				<input type="text" name="contact_subject" id="id_contact_subject" />
-			</p>
-			
-			<p>
-				<label for="id_contact_message"><?php echo _("Message");?></label></br />
-				<textarea name="contact_message" id="id_contact_message"></textarea>
-			</p>
-
-			<p>
-				<?php echo _("Please solve the following mathematical problem so that we know you are a human.");?>
-			</p>
-
-			<p id="id_p_captcha">
-				<label for="id_captcha"><?php echo $maptcha; ?></label></br />
-				<input type="text" name="maptcha_text" id="id_captcha" value="" />
-			</p>
+	if (!empty($webspace['webspace_html'])) {
+		$bodyText=theme_article_wrapper($webspace['webspace_html']);
+	}
+	else {
+		$freetext = _("OpenID for {1}.");
+		$freetext = str_replace("{1}", WEBSPACE_OPENID, $freetext);
+		$bodyText = theme_article_wrapper($freetext);
+	}
 	
-			<p class="note">
-				<?php echo _("Example: 2 * 2 = 4 or 0 - 9 = -9");?>
-			</p>
-
-			<p class="buttons">
-				<input type="submit" name="submit_contact_form" value="<?php echo _("send");?>" />
-			</p>
-		</div>
-		</form>
-	</div>
-
-	<div id="box_freetext">
-		<?php
-		if (!empty($webspace['webspace_html'])) {
-		?>
-		<p>
-			<?php echo $webspace['webspace_html'];?>
-		</p>
-		<?php
-		}
-		else {
-		?>
-		<p>
-			<?php 
-			$freetext = _("OpenID for {1}.");
-			$freetext = str_replace("{1}", WEBSPACE_OPENID, $freetext);
-			echo $freetext;
-			?>
-		</p>
-		<?php }?>
-	</div>
-</div>
-
-
-<div id="col_right">
-	<div class="box" id="box_profile">
-		<div class="box_header">
-			<h1><?php echo _("About me");?></h1>
-		</div>
-
-		<div class="box_body">
-			<p>
-				<?php echo $webspace['user_name']; ?>,
-				<?php echo $webspace['user_location']; ?>
-			</p>
-
-			<div class="avatar">
-				<img src="/get_file.php?avatar=<?php echo $webspace['user_id']?>&amp;width=200" />
-			</div>
-		</div>
-
-		<div class="box_footer">
-			<span onclick="javascript:objShowHide('box_contact');" class="span_link"><?php echo _("Contact me");?></span>
-		</div>
-	</div>
-</div>
+	echo theme_profile_body($emailForm, $bodyText ); 
+	echo theme_profile_sidebar ("/get_file.php?avatar=".$webspace['user_id']."&amp;width=200", 
+				$webspace['user_name'],
+				$webspace['user_location'] ); 
+?>

@@ -94,7 +94,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<?php }?>
 	
 	
-	<form method="POST">
+	<form method="post">
 
 	<?php
 	if (!isset($display)) {

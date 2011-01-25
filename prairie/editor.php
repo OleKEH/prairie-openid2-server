@@ -83,8 +83,8 @@ elseif (isset($_POST['save_markup'])) {
 	$html = trim($_POST['html']);
 	$html = parseHTML($html, $core_config['security']['allowable_html_tags']);
 
-	$css = trim($_POST['css']);
-	$css = parseCSS($css);
+//	$css = trim($_POST['css']);
+//	$css = parseCSS($css);
 	
 	$query = "
 		SELECT user_id
@@ -99,7 +99,7 @@ elseif (isset($_POST['save_markup'])) {
 		
 		$rec['user_id'] = $_SESSION['user_id'];
 		$rec['webspace_html'] = $html;
-		$rec['webspace_css'] = $css;
+//		$rec['webspace_css'] = $css;
 		
 		$table = $db->prefix . '_webspace';
 		
@@ -110,11 +110,9 @@ elseif (isset($_POST['save_markup'])) {
 			UPDATE " . $db->prefix . "_webspace
 			SET 
 			webspace_html=" . $db->qstr($html) . ",
-			webspace_css=" . $db->qstr($css) . " 
 			WHERE 
 			user_id=" . $_SESSION['user_id']
 		;
-	
 		$db->Execute($query);
 	}
 

@@ -116,12 +116,12 @@
 				</script>
 				
 			</p>
-			
+<!-- 	Remove the css field due to end-user usability. The CSS are handled by the tiny_mce		
 			<p>
 				<label for="id_css"><?php echo _("CSS");?></label>
 				<textarea id="id_css" name="css"><?php if (isset($webspace['webspace_css'])) echo $webspace['webspace_css']; ?></textarea>
 			</p>
-			
+ -->			
 			<p class="buttons">
 				<input type="submit" name="save_markup" value="<?php echo _("save");?>" />
 			</p>

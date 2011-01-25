@@ -1,5 +1,4 @@
-<?php
-
+/*
 // -----------------------------------------------------------------------
 // This file is part of Prairie
 // 
@@ -21,10 +20,18 @@
 // along with this program; see the file COPYING.txt.  If not, see
 // <http://www.gnu.org/licenses/>
 // -----------------------------------------------------------------------
+*/
 
-$font = "DejaVuSans-ExtraLight.ttf";
-$color = "#666666";
-$background_color = "#FFFFFF";
-$font_size = 40;
+@media print {
+}
 
-?>
+@media screen {
+	#col_left { float:left; display: inline; width: 370px; }
+	#col_right { float:left; width: 370px;  margin-left:30px; }
+
+}
+
+@media screen,print {
+	.box_body label { float: left; width: 110px; margin-right: 25px; }
+	#box_security img { border: 1px solid #333; }
+}

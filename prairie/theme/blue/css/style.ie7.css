@@ -1,0 +1,220 @@
+/* begin Box, Sheet */
+.art-sheet-tl
+{
+  clip: rect(auto 37px 37px auto);
+}
+
+.art-sheet-tr
+{
+  clip: rect(auto auto 37px 37px);
+}
+
+.art-sheet-bl
+{
+  clip: rect(37px 37px auto auto);
+}
+
+.art-sheet-br
+{
+  clip: rect(37px auto auto 37px);
+}
+
+.art-sheet-tc
+{
+  clip: rect(auto auto 37px auto);
+}
+
+.art-sheet-bc
+{
+  clip: rect(37px auto auto auto);
+}
+
+.art-sheet-cr
+{
+  clip: rect(auto auto auto 37px);
+}
+
+.art-sheet-cl
+{
+  clip: rect(auto 37px auto auto);
+}
+
+.art-sheet-body
+{
+  zoom: 1;
+}
+/* end Box, Sheet */
+
+/* begin Menu */
+.art-nav .r
+{
+  clip: rect(auto auto auto 890px);
+}
+
+/* end Menu */
+
+/* begin MenuItem */
+.art-menu a .r
+{
+  clip: rect(auto auto auto 404px);
+}
+/* end MenuItem */
+
+/* begin Layout */
+div.art-content-layout
+{
+  display: block;
+  zoom: 1;
+  overflow: hidden;
+}
+/* end Layout */
+
+/* begin Button */
+.art-button-wrapper .r
+{
+  clip: rect(auto auto auto 396px);
+}
+/* end Button */
+
+/* begin Box, Block, VMenuBlock */
+
+.art-vmenublock-body
+{
+  zoom: 1;
+}
+/* end Box, Block, VMenuBlock */
+
+/* begin Box, Box, VMenuBlockContent */
+
+.art-vmenublockcontent-body
+{
+  zoom: 1;
+}
+
+.art-vmenublockcontent-body
+{
+  zoom: 1;
+}
+/* end Box, Box, VMenuBlockContent */
+
+/* begin VMenuItem */
+ul.art-vmenu .art-vmenu-separator, ul.art-vmenu .art-vmenu-separator-span, ul.art-vmenu li.art-vsubmenu-separator, ul.art-vmenu .art-vsubmenu-separator-span
+{
+  zoom: 1;
+  overflow: hidden;
+  float: left;
+  width: 100%;
+}
+
+.art-vmenu ul, .art-vmenu li
+{
+  zoom: 1;
+}
+
+ul.art-vmenu a .r
+{
+  clip: rect(auto auto auto 875px);
+}
+/* end VMenuItem */
+
+/* begin Box, Block */
+.art-block-tl
+{
+  clip: rect(auto 13px 13px auto);
+}
+
+.art-block-tr
+{
+  clip: rect(auto auto 13px 13px);
+}
+
+.art-block-bl
+{
+  clip: rect(13px 13px auto auto);
+}
+
+.art-block-br
+{
+  clip: rect(13px auto auto 13px);
+}
+
+.art-block-tc
+{
+  clip: rect(auto auto 13px auto);
+}
+
+.art-block-bc
+{
+  clip: rect(13px auto auto auto);
+}
+
+.art-block-cr
+{
+  clip: rect(auto auto auto 13px);
+}
+
+.art-block-cl
+{
+  clip: rect(auto 13px auto auto);
+}
+
+.art-block-body
+{
+  zoom: 1;
+}
+/* end Box, Block */
+
+/* begin Box, BlockContent */
+
+.art-blockcontent-body
+{
+  zoom: 1;
+}
+/* end Box, BlockContent */
+
+/* begin Box, Post */
+
+.art-post-body
+{
+  zoom: 1;
+}
+/* end Box, Post */
+
+/* begin PostContent */
+.art-postcontent
+{
+  height: 1%;
+}
+/* end PostContent */
+
+/* begin Footer */
+.art-footer-r
+{
+  clip: rect(auto auto auto 20px);
+}
+
+/* end Footer */
+
+/* begin LayoutCell, content */
+div.art-sidebar1
+{
+  width: auto;
+}
+
+div.art-content-layout div.art-layout-cell, div.art-content-layout div.art-layout-cell div.art-content-layout div.art-layout-cell
+{
+  display: block;
+  overflow: hidden;
+  float: left;
+  clear: right;
+  margin-bottom: -32000px;
+  padding-bottom: 32000px;
+}
+
+div.art-layout-cell div.art-layout-cell
+{
+  float: none;
+  clear: both;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}/* end LayoutCell, content */

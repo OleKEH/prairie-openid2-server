@@ -118,6 +118,7 @@ if (isset($user_webspace)) {
 
 		define("WEBSPACE_OPENID", $webspace['openid_name']);
 		define("WEBSPACE_USERID", $webspace['user_id']);
+		define("WEBSPACE_USERNAME", $webspace['user_name']); 
 		
 		if (!empty($webspace['webspace_title'])) {
 			$tpl->set('webspace_title', $webspace['webspace_title']);
@@ -185,6 +186,8 @@ else {
 }
 
 define("SCRIPT_THEME_PATH", "theme/" . SCRIPT_THEME_NAME . "/");
+
+require_once (SCRIPT_THEME_PATH . "theme_functions.php"); 
 
 // OBTAIN SCRIPT NAME --------------------------------------------------
 if (isset($uri_routing[0]) && is_readable(SCRIPT_TEMPLATE_PATH . $uri_routing[0] . '.tpl.php')) {

@@ -22,6 +22,30 @@
 // <http://www.gnu.org/licenses/>
 // -----------------------------------------------------------------------
 
+
+// Menu wrapper
+
+function render_topMenu ($startblock = "", $endblock = "") {
+	if (defined('SCRIPT_NAME') ) $currentscript = SCRIPT_NAME; 
+		else $currentscript = ""; 
+	$topMenu = 	$startblock; 
+	$topMenu .= theme_topMenuItem (false, _("Home"), "/" );
+	if (!empty($_SESSION['user_id'])) {
+		
+		$topMenu .= theme_topMenuItem ($currentscript == "profile", _("Profile"), "/profile" ); 
+		$topMenu .= theme_topMenuItem ($currentscript == "editor", _("Edit"), "/editor" ); 
+		$topMenu .= theme_topMenuItem ($currentscript == "account", _("Account"), "/account" ); 
+		if (defined('USER_IS_MAINTAINER')) {
+			$topMenu .= theme_topMenuItem ($currentscript == "maintain", _("Maintain"), "/maintain" ); 
+		}
+		$topMenu .= theme_topMenuItem (false, _("Log off"), "/disconnect" ); 
+	} else {
+		// no menus 
+	}
+	$topMenu .= $endblock; 
+	return $topMenu; 
+}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,97 +66,15 @@
 
 	<script type="text/javascript" src="/<?php echo SCRIPT_TEMPLATE_PATH;?>js/functions.js"></script>
 	<script type="text/javascript" src="/tiny_mce/tiny_mce.js"></script>
-	<style type="text/css">
-	<!--
-	@import url(/<?php echo SCRIPT_THEME_PATH;?>css/common.css);
-	@import url(/<?php echo SCRIPT_THEME_PATH;?>css/<?php echo SCRIPT_NAME;?>.css);
-	-->
-	</style>
+	<?php 
+		echo theme_headincludes(); 
+	?>
 </head>
-
-<body>
-	<div id="content_container">
-		<div id="header_container">
-			<ul>
-				<?php
-				if (!empty($_SESSION['user_id'])) {
-				?>
-				<?php
-				$link_css = "";
-				if (defined('SCRIPT_NAME') && SCRIPT_NAME == "profile") {
-					$link_css = " class=\"current\"";
-				}
-				?>
-				<li><a href="/profile"<?php echo $link_css;?>><?php echo _("Profile");?></a></li>
-
-
-				<?php
-				$link_css = "";
-				if (defined('SCRIPT_NAME') && SCRIPT_NAME == "editor") {
-					$link_css = " class=\"current\"";
-				}
-				?>
-				<li><a href="/editor"<?php echo $link_css;?>><?php echo _("Edit");?></a></li>
-				
-				<?php
-				$link_css = "";
-				if (defined('SCRIPT_NAME') && SCRIPT_NAME == "account") {
-					$link_css = " class=\"current\"";
-				}
-				?>
-				<li><a href="/account"<?php echo $link_css;?>><?php echo _("Account");?></a></li>
-
-				<?php
-				if (defined('USER_IS_MAINTAINER')) {
-				$link_css = "";
-				if (defined('SCRIPT_NAME') && SCRIPT_NAME == "maintain") {
-					$link_css = " class=\"current\"";
-				}
-				?>
-				<li><a href="/maintain"<?php echo $link_css;?>><?php echo _("Maintain");?></a></li>
-				<?php }?>
-				
-				<li><a href="/disconnect"><?php echo _("Log off");?></a></li>
-				<?php }?>
-			</ul>
-			
-			<div id="header_title">
-				<a href="/"><img src="/get_file.php?title=<?php if (defined('WEBSPACE_USERID')) { echo WEBSPACE_USERID; } else { echo 0;}?>" border="0" alt="" /></a>
-			</div>
-		</div>
-
-		<div style="clear:both;"></div>
-
-		<?php
-		if (!empty($GLOBALS['script_error_log'])) {
-		?>
-		<div id="system_error_container">
-			<?php
-			foreach($GLOBALS['script_error_log'] as $key => $val):
-				echo $val . "<br />";
-			endforeach;
-			?>
-		</div>
-		<?php }?>
-		
-		<div id="body_container">
-			<?php echo $content;?>
-		</div>
-		
-		<div style="clear:both;"></div>
-		
-		<div id="footer_container">
-			<ul>
-				<li><?php echo _("Made with <a href='http://www.barnraiser.org/prairie/'>Prairie</a>");?></li>
-				<?php
-				if (!isset($_SESSION['user_id']) && defined('WEBSPACE_OPENID')) {
-				?>
-				<li><a href="/login"><?php echo _("Manage");?></a></li>
-				<?php }?>
-			</ul>
-		</div>
-
-		<div style="clear:both;"></div>
-	</div>
-</body>
+<?php 
+		$startmenublock = theme_startmenublock(); 
+		$endmenublock = theme_endmenublock(); 
+		$topMenu = render_topMenu ( $startmenublock, $endmenublock); 
+		$header = theme_head ($topMenu); 
+		echo theme_bodypart ($header, $content); 
+?>
 </html>

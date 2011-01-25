@@ -96,11 +96,33 @@ function form_($action="", $method="POST", $style="") {
 	return $html; 
 }
 
+function p_($body, $id="") {
+	if ($id) $idtx=' id="'.$id.'"'; else $idtx=""; 
+	return "<p$idtx>$body</p>"; 
+}
+
+function note_($body) {
+	return '<p class="note">'.$body.'</p>';
+}
+
 function checkbox_($name, $defval="") {
 	// '<input name="xxid" type="checkbox" id="xxid" value="1" checked>'
 	$html='<input name="'.$name.'" type="checkbox" id="'.$name.'" value="1"'; 
 	if (($defval) && ($defval!="0") && ($defval!="false")) $html.=" checked"; 
 	$html.=">\n"; 
+	return $html; 
+}
+
+function labelinput_($name, $label, $value="", $pid="", $iid="") {
+	if ($iid) $ixid = $iid; else $ixid = "id_".$name; 
+	$html=p_("<label for=".'"'.$ixid.'">'.$label."</label>
+		<input type=".'"text" name="'.$name.'" id="'.$ixid.'" value="'.$value.'" />', $pid);
+	return $html; 
+}
+
+function labeltextarea_($name, $label, $value="") {
+	$html=p_("<label for=".'id_'.$name.'">'.$label."</label>
+		<textarea name=".'"'.$name.'" id="id_'.$name.'">'.$value.'</textarea>');
 	return $html; 
 }
 
