@@ -167,7 +167,7 @@ class OpenidServer {
 		}
 		
 		if (empty($arr)) {
-			file_put_contents($f, microtime() . "\n\nGET\n\n" . implode("\n", explode('&', http_build_query($_GET))) . "\n\n\n\nPOST\n\n" . implode("\n", explode('&', http_build_query($_POST))));
+			file_put_contents($f, $this->association_type."\n".microtime() . "\n\nGET\n\n" . implode("\n", explode('&', http_build_query($_GET))) . "\n\n\n\nPOST\n\n" . implode("\n", explode('&', http_build_query($_POST))));
 		}
 		else {
 			$str = "";
@@ -260,7 +260,7 @@ class OpenidServer {
 
 	// see 8.1 of specification
 	function associate() {
-	
+
 		$data_to_send = array();
 		
 		if (!empty($_POST['openid_ns']) && $_POST['openid_ns'] == 'http://specs.openid.net/auth/2.0') {
@@ -275,7 +275,7 @@ class OpenidServer {
 			$data_to_send['session_type'] = $_POST['openid_session_type'];
 		}
 		
-		if (empty($_POST['openid_assoc_type'])) {
+		if (!empty($_POST['openid_assoc_type'])) {
 			$this->association_type = $_POST['openid_assoc_type'];
 			$data_to_send['assoc_type'] = $_POST['openid_assoc_type'];
 		}
@@ -381,7 +381,6 @@ class OpenidServer {
 	
 	// see section 10 of specification
 	function checkid_setup($type = null) {
-//		$this->_debug();
 		if (!empty($_SESSION['user_id']) && isset($_POST['trust'])) {
 			
 			$openid_identity = GetFromURL("openid_identity"); 
@@ -435,22 +434,20 @@ class OpenidServer {
 			$query = "
 				SELECT *
 				FROM " . $this->storage->prefix . "_session
-				WHERE assoc_handle=" . $this->storage->qstr($data_to_send['openid.assoc_handle'])
+				WHERE assoc_handle=" . $this->storage->qstr($data_to_send['openid.assoc_handle']).";"
 			;
-					
+				
 			$openid_session = $this->storage->Execute($query);
-			
-			if (isset($openid_session['assoc_handle'])) {
-				$this->association_type = $openid_session['assoc_type'];
+			if (isset($openid_session[0]['assoc_handle'])) {
+				$this->association_type = $openid_session[0]['assoc_type'];
 			}
-			
 			$data_to_send['openid.sig'] = base64_encode($this->hmac($data_to_send['openid.assoc_handle'], $tokens));
 		
 			$s = '?';
 			if (strpos($openid_return_to, $s)) {
 				$s = '&';
 			}
-//			$this->_debug($data_to_send);
+			
 			 // send us back to the consumer
 			header('location: ' . $openid_return_to . $s . http_build_query($data_to_send));
 			exit;
