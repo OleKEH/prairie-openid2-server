@@ -22,6 +22,12 @@
 // <http://www.gnu.org/licenses/>
 // -----------------------------------------------------------------------
 
+
+function Link_($name, $url) {
+	$html='<a href="'.$url.'">'.$name.'</a>'; 
+	return $html; 	
+}
+
 function GetFromURL ($param) {
 	if ($_SERVER["REQUEST_METHOD"]=="GET") {
 		if (isset ($_GET[$param])) return $_GET[$param]; 
