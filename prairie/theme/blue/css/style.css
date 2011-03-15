@@ -1,6 +1,4 @@
-/* begin Page */
 
-/* Generated with Artisteer version 2.5.0.31073, file checksum is C1335F27. */
 
 body, p
 {
@@ -1297,6 +1295,7 @@ ul.art-vmenu ul li li li li li a:hover, ul.art-vmenu ul li li li li li a:hover.a
   margin: 0 auto;
   min-width: 19px;
   min-height: 19px;
+  max-width: 230px;
 }
 
 .art-block-body
@@ -1304,6 +1303,7 @@ ul.art-vmenu ul li li li li li a:hover, ul.art-vmenu ul li li li li li a:hover.a
   position: relative;
   z-index: 1;
   padding: 5px;
+	
 }
 
 .art-block-tr, .art-block-tl, .art-block-br, .art-block-bl, .art-block-tc, .art-block-bc,.art-block-cr, .art-block-cl
@@ -1514,8 +1514,9 @@ ul.art-vmenu ul li li li li li a:hover, ul.art-vmenu ul li li li li li a:hover.a
 .art-post-body
 {
   position: relative;
-  z-index: 1;
   padding: 15px;
+	width: 620px;
+	visibility: visible;
 }
 
 
@@ -1819,7 +1820,7 @@ blockquote,
 /* begin LayoutCell, content */
 .art-content-layout .art-content
 {
-  width: 70%;
+  width: 650px;
 }
 .art-content-layout .art-content-wide
 {
@@ -1831,7 +1832,9 @@ blockquote,
 .art-content-layout .art-sidebar1
 {
   background-color: #C6D2E6;
-  width: 30%;
+  width: 230px;
+	display: block;
+	float: right;
 }
 /* end LayoutCell, sidebar1 */
 

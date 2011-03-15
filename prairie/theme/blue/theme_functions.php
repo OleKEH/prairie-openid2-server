@@ -7,7 +7,7 @@ function theme_headincludes () {
 	$csscommon = SCRIPT_THEME_PATH."css/common.css";
 	$cssScriptName =  SCRIPT_THEME_PATH."css/".SCRIPT_NAME.".css"; 
 	$tmppath = "/theme/blue"; 
-
+//    <script type="text/javascript" src="$tmppath/script.js"></script>  
 	$html = <<<HTT
 <style type="text/css">
 	<!--
@@ -18,7 +18,7 @@ function theme_headincludes () {
 	<link rel="stylesheet" href="$tmppath/css/style.css" type="text/css" media="screen" />
     <!--[if IE 6]><link rel="stylesheet" href="$tmppath/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" href="$tmppath/css/style.ie7.css" type="text/css" media="screen" /><![endif]-->
-    <script type="text/javascript" src="$tmppath/script.js"></script>
+ 
 HTT;
 	return $html; 
 }
