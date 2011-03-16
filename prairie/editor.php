@@ -83,7 +83,7 @@ elseif (isset($_POST['save_markup'])) {
 	$html = trim($_POST['html']);
 	$html = parseHTML($html, $core_config['security']['allowable_html_tags']);
 
-//	$css = trim($_POST['css']);
+	//	$css = trim($_POST['css']);
 //	$css = parseCSS($css);
 	
 	$query = "
@@ -109,7 +109,7 @@ elseif (isset($_POST['save_markup'])) {
 		$query = "
 			UPDATE " . $db->prefix . "_webspace
 			SET 
-			webspace_html=" . $db->qstr($html) . ",
+			webspace_html=" . $db->qstr($html) . " 
 			WHERE 
 			user_id=" . $_SESSION['user_id']
 		;
