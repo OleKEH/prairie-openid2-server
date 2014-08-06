@@ -416,7 +416,7 @@ class OpenidServer {
 				$data_to_send['openid.assoc_handle'] = $this->assoc_handle();
 			}
 			
-			$this->sreg_extention (&$data_to_send);
+			$this->sreg_extention ($data_to_send);
 			
 			
 			$signed = '';
