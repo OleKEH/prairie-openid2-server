@@ -165,7 +165,7 @@ if (!empty($GLOBALS['script_error_log'])) {
 	echo $tpl->fetch($outer_tpl);
 }
 else {
-	header("Location: " . $_SERVER['HTTP_REFERER']);
+	header("Location: /");
 	exit;
 }
 ?>
