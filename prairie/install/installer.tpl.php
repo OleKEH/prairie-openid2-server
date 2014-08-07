@@ -231,7 +231,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 					</p>
 
 					<p>
-						<?php echo $http;?>:// <input type="text" name="new_subdomain" value="example.<?php echo $domain; ?>" />
+						<?php echo $http;?>:// <input type="text" name="new_subdomain" value="<?php echo $domain; ?>" />
 					</p>
 				</div>
 				<?php
@@ -248,7 +248,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 				<p id="id_new_domain" style="display: none;">
 					Type in your OpenID URL.<br />
-					<?php echo $http;?>://<input type="text" name="new_domain" value="example.<?php echo $domain; ?>" />
+					<?php echo $http;?>://<input type="text" name="new_domain" value="<?php echo $domain; ?>" />
 				</p>
 				<?php }?>
 			</div>
