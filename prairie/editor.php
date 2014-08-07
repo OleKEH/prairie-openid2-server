@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_POST['save_profile'])) {
 	$title = trim($_POST['webspace_title']);
 	
-	if (is_file('theme/' . $_POST['theme_name'] . '/thumb.png')) {
+	if (in_array($_POST['theme_name'], barnraiser_scandir('theme/')) && is_file('theme/' . $_POST['theme_name'] . '/thumb.png')) {
 		$theme_name = $_POST['theme_name'];
 	}
 	else {
