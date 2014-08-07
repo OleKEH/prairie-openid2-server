@@ -58,8 +58,8 @@ function render_topMenu ($startblock = "", $endblock = "") {
 	<?php
 	if (defined('SCRIPT_NAME') && SCRIPT_NAME == 'profile') {
 	?>
-		<link rel="openid2.provider" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/login" />
-		<link rel="openid.server" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/login" />
+		<link rel="openid2.provider" href="http<?php if (isset($_SERVER['HTTPS'])&& (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1)) { echo 's';} ?>://<?php echo $_SERVER['HTTP_HOST']; ?>/login" />
+		<link rel="openid.server" href="http<?php if (isset($_SERVER['HTTPS'])&& (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1)) { echo 's'; } ?>://<?php echo $_SERVER['HTTP_HOST']; ?>/login" />
 	<?php }?>
 
 	<title><?php if (isset($webspace_title)) { echo htmlspecialchars($webspace_title); } else { echo _("Prairie");}?></title>

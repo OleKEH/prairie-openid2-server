@@ -157,7 +157,7 @@ if (isset($user_webspace)) {
 						$data_to_send = Array ();
 						$data_to_send['openid.ns'] = 'http://specs.openid.net/auth/2.0';
 						$data_to_send['openid.mode'] = 'setup_needed';
-						$data_to_send['openid.user_setup_url'] = 'http://'.$_SERVER['SERVER_NAME'] . '/login';
+						$data_to_send['openid.user_setup_url'] = 'http'.(isset($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1) ? 's' : '').'://'.$_SERVER['SERVER_NAME'] . '/login';
 					
 						$redirurl = $openid_return_to . $s . http_build_query($data_to_send);
 						if (strpos($redirurl, '\n') !== FALSE || (strpos($redirurl, 'http://')!==0 && strpos($redirurl, 'https://')!==0)) {
