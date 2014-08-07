@@ -79,6 +79,11 @@ if (isset($_POST['trust'])) {
 	}
 }
 elseif (isset($_POST['cancel'])) {
+	if (strpos($openIDreturnTo, '\n') !== FALSE || (strpos($openIDreturnTo, 'http://')!==0 && strpos($openIDreturnTo, 'https://')!==0)) {
+		header("Status: 500");
+		echo "Invalid return URL found.";
+		exit;
+	}
 	header("Location: " . $openIDreturnTo);
 	exit;
 }
