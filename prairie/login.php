@@ -127,7 +127,7 @@ elseif (isset($_POST['submit_new_password'])) {
 			$query = "
 				UPDATE " . $db->prefix . "_user
 				SET user_password=" . $db->qstr(md5($new_password)) . "
-				WHERE user_id=" . $result[0]['user_id']
+				WHERE user_id=" . (int)$result[0]['user_id']
 			;
 			
 			$db->Execute($query);

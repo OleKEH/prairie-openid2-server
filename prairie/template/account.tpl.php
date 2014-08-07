@@ -174,7 +174,7 @@
 		
 		<div class="box_body">
 			<div style="text-align:center;">
-				<img src="/get_file.php?avatar=<?php echo $_SESSION['user_id'];?>&amp;width=200" width="200" class="avatar" />
+				<img src="/get_file.php?avatar=<?php echo (int)$_SESSION['user_id'];?>&amp;width=200" width="200" class="avatar" />
 			</div>
 			
 			<p>

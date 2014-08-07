@@ -36,7 +36,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if (isset($_POST['submit_delete_avatar'])) {
-	$destination = $core_config['file']['dir'] . "avatars/" . $_SESSION['user_id'] . "/";
+	$destination = $core_config['file']['dir'] . "avatars/" . (int)$_SESSION['user_id'] . "/";
 
 	foreach(glob($destination . '*') as $i) {
 		unlink($i);
@@ -66,7 +66,7 @@ else {
 		if (isset($_POST['submit_upload_avatar'])) {
 			
 			$thumbnail_width = array(60, 100, 200);
-			$destination = $core_config['file']['dir'] . "avatars/" . $_SESSION['user_id'] . "/";
+			$destination = $core_config['file']['dir'] . "avatars/" . (int)$_SESSION['user_id'] . "/";
 	
 			if (!is_dir($destination)) {
 				$oldumask = umask(0);

@@ -47,17 +47,17 @@ elseif (isset($_REQUEST['avatar'])) { //?avatar=file = avatar
 		$_REQUEST['width'] = 100;
 	}
 
-	$av = glob($core_config['file']['dir'] . 'avatars/' . $_REQUEST['avatar'] . '/' . $_REQUEST['width'] . '*');
+	$av = glob($core_config['file']['dir'] . 'avatars/' . (int)$_REQUEST['avatar'] . '/' . (int)$_REQUEST['width'] . '*');
 
 	if (isset($av[0])) {
 		$file = $av[0];
 	}
 	else {
-		$file = 'template/silver/img/no_avatar_' . $_REQUEST['width'] . '.png';
+		$file = 'template/silver/img/no_avatar_' . (int)$_REQUEST['width'] . '.png';
 	}
 }
 elseif (isset($_REQUEST['title'])) { // ?title=file = webpage title image
-	$file = $core_config['file']['dir'] . 'titles/' . $_REQUEST['title'] . '.png';
+	$file = $core_config['file']['dir'] . 'titles/' . (int)$_REQUEST['title'] . '.png';
 
 	if (!is_file($file)) {
 		$file = $core_config['file']['dir'] . 'titles/0.png';

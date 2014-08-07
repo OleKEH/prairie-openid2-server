@@ -56,7 +56,7 @@ if (isset($webspace['webspace_css'])) {
 	}
 	
 	echo theme_profile_body($emailForm, $bodyText ); 
-	echo theme_profile_sidebar ("/get_file.php?avatar=".$webspace['user_id']."&amp;width=200", 
+	echo theme_profile_sidebar ("/get_file.php?avatar=".(int)$webspace['user_id']."&amp;width=200", 
 				$webspace['user_name'],
 				$webspace['user_location'] ); 
 ?>

@@ -40,7 +40,7 @@ if (isset($_POST['save_email_notification'])) {
 		SET 
 		user_email_notify=" . $email_notify . " 
 		WHERE
-		user_id=" . $_SESSION['user_id']
+		user_id=" . (int)$_SESSION['user_id']
 	;
 	
 	$db->Execute($query);
@@ -75,7 +75,7 @@ elseif (isset($_POST['save_profile_information'])) {
 			user_language=" . $db->qstr($_POST['user_language']) . ",
 			user_timezone=" . $db->qstr($_POST['user_timezone']) . ",
 			user_birthdate=" . $db->qstr($_POST['user_birthdate']) . "
-			WHERE user_id=" . $_SESSION['user_id'].";";
+			WHERE user_id=" . (int)$_SESSION['user_id'].";";
 
 		$db->Execute($query);
 		
@@ -133,7 +133,7 @@ elseif (isset($_POST['change_user_email'])) {
 		$query = "
 			UPDATE " . $db->prefix . "_user
 			SET user_email=" . $db->qstr(trim($_POST['user_email1'])) . " 
-			WHERE user_id=" . $_SESSION['user_id']
+			WHERE user_id=" . (int)$_SESSION['user_id']
 		;
 
 		$db->Execute($query);
@@ -159,7 +159,7 @@ elseif (isset($_POST['change_user_password'])) {
 		$query = "
 			SELECT user_id
 			FROM " . $db->prefix . "_user
-			WHERE user_id=" . $_SESSION['user_id'] . "
+			WHERE user_id=" . (int)$_SESSION['user_id'] . "
 			AND user_password=" . $db->qstr(md5($_POST['user_password_old']))
 		;
 		
@@ -175,7 +175,7 @@ elseif (isset($_POST['change_user_password'])) {
 			UPDATE " . $db->prefix . "_user
 			SET user_password=" . $db->qstr(md5($_POST['user_password1'])) . "
 			WHERE
-			user_id=" . $_SESSION['user_id'] . " AND
+			user_id=" . (int)$_SESSION['user_id'] . " AND
 			user_password=" . $db->qstr(md5($_POST['user_password_old']))
 		;
 		
@@ -188,7 +188,7 @@ elseif (isset($_POST['change_user_password'])) {
 
 
 // CHECK TO DISPLAY AVATAR DELETE BUTTON ------
-$av = glob($core_config['file']['dir'] . "avatars/" . $_SESSION['user_id'] . "/100*");
+$av = glob($core_config['file']['dir'] . "avatars/" . (int)$_SESSION['user_id'] . "/100*");
 
 if (isset($av[0])) {
 	$body->set('display_avatar_delete_button', 1);
