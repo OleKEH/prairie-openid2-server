@@ -50,11 +50,11 @@ if (isset($_POST['submit_contact_form'])) {
 
 		require_once('class/Mail/class.phpmailer.php');
 
-		$email_subject = stripslashes(htmlspecialchars($_POST['contact_subject']));
+		$email_subject = htmlspecialchars($_POST['contact_subject']);
 		
 		$mail->Subject = $email_subject;
 	
-		$email_message = stripslashes(htmlspecialchars($_POST['contact_message']));
+		$email_message = htmlspecialchars($_POST['contact_message']);
 	
 		if (!empty($_POST['contact_email'])) {
 			$email_message .= "\n\n";

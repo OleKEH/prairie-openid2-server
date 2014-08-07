@@ -387,7 +387,7 @@ class OpenidServer {
 			$openid_return_to = GetFromURL("openid_return_to"); 
 			
 			if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
-				$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
+				$openid_identity='http'.(isset($_SERVER['HTTPS'])&& (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1) ? 's' : '').'://'.$_SERVER['SERVER_NAME'].'/'; 
 			}
 			
 			$openIDns=GetFromURL("openid_ns"); 
@@ -469,7 +469,7 @@ class OpenidServer {
 		$openid_return_to = GetFromURL("openid_return_to"); 
 					
 		if ($openid_identity == 'http://specs.openid.net/auth/2.0/identifier_select'){
-			$openid_identity='http://'.$_SERVER['SERVER_NAME'].'/'; 
+			$openid_identity='http'.(isset($_SERVER['HTTPS'])&& (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == 1) ? 's' : '').'://'.$_SERVER['SERVER_NAME'].'/'; 
 		}	
 		
 		if (!empty($_SESSION['user_id'])) {

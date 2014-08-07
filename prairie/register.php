@@ -44,7 +44,7 @@ if (isset($uri_routing[1])) { // We are confirming a key
 			user_registration_key=NULL,
 			user_live=1 
 			WHERE 
-			user_id=" . $result[0]['user_id']
+			user_id=" . (int)$result[0]['user_id']
 		;
 		
 		$db->Execute($query);

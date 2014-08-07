@@ -41,7 +41,7 @@ if (isset($_POST['update_profile'])) {
 		user_email=" . $db->qstr($_POST['user_email']) . ",
 		user_dob=" . $db->qstr($dob) . " 
 		WHERE
-		user_id=" . $_POST['user_id']
+		user_id=" . (int)$_POST['user_id']
 	;
 
 	$db->Execute($query);
@@ -52,7 +52,7 @@ elseif (isset($_POST['send_new_password'])) {
 		SELECT user_id
 		FROM " . $db->prefix . "_user
 		WHERE
-		user_id=" . $_POST['user_id']
+		user_id=" . (int)$_POST['user_id']
 	;
 
 	$result = $db->Execute($query, 1);
@@ -65,7 +65,7 @@ elseif (isset($_POST['send_new_password'])) {
 		$query = "
 			UPDATE " . $db->prefix . "_user
 			SET user_password=" . $db->qstr(md5($new_password)) . "
-			WHERE user_id=" . $result[0]['user_id']
+			WHERE user_id=" . (int)$result[0]['user_id']
 		;
 		
 		$db->Execute($query);
@@ -107,7 +107,7 @@ elseif (isset($_POST['send_new_verification'])) {
 	$query = "
 		UPDATE " . $db->prefix . "_user
 		SET user_registration_key=" . $db->qstr($key) . "
-		WHERE user_id=" . $_POST['user_id']
+		WHERE user_id=" . (int)$_POST['user_id']
 	;
 
 	$db->Execute($query);
@@ -215,7 +215,7 @@ if (isset($uri_routing[1]) && $uri_routing[1] == "account" && isset($uri_routing
 		SELECT user_id, openid_name, user_name, user_email, user_dob, user_live 
 		FROM " . $db->prefix . "_user 
 		WHERE 
-		user_id=".$uri_routing[2]
+		user_id=".(int)$uri_routing[2]
 	;
 	
 	$result = $db->Execute($query, 1);

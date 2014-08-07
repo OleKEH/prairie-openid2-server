@@ -114,7 +114,7 @@ class Database {
 	function qstr($s) {
 		
 		if (!get_magic_quotes_gpc()) {
- 			$s = addslashes($s);
+ 			$s =  mysql_real_escape_string($s);
 		}
 		return "'" . $s . "'";
 	}

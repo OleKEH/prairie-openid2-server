@@ -57,7 +57,7 @@ if (isset($_POST['trust'])) {
 	if (empty($result)) {
 		$rec = array();
 
-		$rec['user_id'] = $_SESSION['user_id'];
+		$rec['user_id'] = (int)$_SESSION['user_id'];
 		$rec['trust_url'] = $trust_url;
 		$rec['trust_total'] = 1;
 		$rec['trust_last_visit'] = time();
@@ -72,13 +72,18 @@ if (isset($_POST['trust'])) {
 			UPDATE " . $db->prefix . "_trust
 			SET trust_total=trust_total+1, 
 			trust_last_visit=NOW()
-			WHERE trust_id=" . $result[0]['trust_id']
+			WHERE trust_id=" . (int)$result[0]['trust_id']
 		;
 		
 		$db->Execute($query);
 	}
 }
 elseif (isset($_POST['cancel'])) {
+	if (strpos($openIDreturnTo, '\n') !== FALSE || (strpos($openIDreturnTo, 'http://')!==0 && strpos($openIDreturnTo, 'https://')!==0)) {
+		header("Status: 500");
+		echo "Invalid return URL found.";
+		exit;
+	}
 	header("Location: " . $openIDreturnTo);
 	exit;
 }

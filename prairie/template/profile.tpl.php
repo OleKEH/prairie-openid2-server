@@ -51,12 +51,12 @@ if (isset($webspace['webspace_css'])) {
 	}
 	else {
 		$freetext = _("OpenID for {1}.");
-		$freetext = str_replace("{1}", WEBSPACE_OPENID, $freetext);
+		$freetext = str_replace("{1}", htmlspecialchars(WEBSPACE_OPENID), $freetext);
 		$bodyText = theme_article_wrapper($freetext);
 	}
 	
 	echo theme_profile_body($emailForm, $bodyText ); 
-	echo theme_profile_sidebar ("/get_file.php?avatar=".$webspace['user_id']."&amp;width=200", 
-				$webspace['user_name'],
-				$webspace['user_location'] ); 
+	echo theme_profile_sidebar ("/get_file.php?avatar=".(int)$webspace['user_id']."&amp;width=200", 
+				htmlspecialchars($webspace['user_name']),
+				htmlspecialchars($webspace['user_location']) ); 
 ?>

@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_POST['save_profile'])) {
 	$title = trim($_POST['webspace_title']);
 	
-	if (is_file('theme/' . $_POST['theme_name'] . '/thumb.png')) {
+	if (in_array($_POST['theme_name'], barnraiser_scandir('theme/')) && is_file('theme/' . $_POST['theme_name'] . '/thumb.png')) {
 		$theme_name = $_POST['theme_name'];
 	}
 	else {
@@ -40,7 +40,7 @@ if (isset($_POST['save_profile'])) {
 	$query = "
 		SELECT user_id
 		FROM " . $db->prefix . "_webspace
-		WHERE user_id=" . $_SESSION['user_id']
+		WHERE user_id=" . (int)$_SESSION['user_id']
 	;
 	
 	$result = $db->Execute($query);
@@ -63,17 +63,17 @@ if (isset($_POST['save_profile'])) {
 			webspace_title=" . $db->qstr($title) . ",
 			webspace_theme=" . $db->qstr($theme_name) . "
 			WHERE 
-			user_id=" . $_SESSION['user_id']
+			user_id=" . (int)$_SESSION['user_id']
 		;
 	
 		$db->Execute($query);
 	}
 
 	if (!empty($title)) {
-		makeThemeHeader($core_config['file']['dir'], $_SESSION['user_id'], $theme_name, $title);
+		makeThemeHeader($core_config['file']['dir'], (int)$_SESSION['user_id'], $theme_name, $title);
 	}
 	else {
-		unlink($core_config['file']['dir'] . "/titles/" . $_SESSION['user_id'] . ".png");
+		unlink($core_config['file']['dir'] . "/titles/" . (int)$_SESSION['user_id'] . ".png");
 	}
 
 	header('location: /editor');
@@ -89,7 +89,7 @@ elseif (isset($_POST['save_markup'])) {
 	$query = "
 		SELECT user_id
 		FROM " . $db->prefix . "_webspace
-		WHERE user_id=" . $_SESSION['user_id']
+		WHERE user_id=" . (int)$_SESSION['user_id']
 	;
 	
 	$result = $db->Execute($query);
@@ -111,7 +111,7 @@ elseif (isset($_POST['save_markup'])) {
 			SET 
 			webspace_html=" . $db->qstr($html) . " 
 			WHERE 
-			user_id=" . $_SESSION['user_id']
+			user_id=" . (int)$_SESSION['user_id']
 		;
 		$db->Execute($query);
 	}
@@ -123,7 +123,7 @@ elseif (isset($_POST['save_markup'])) {
 $query = "
 	SELECT *
 	FROM " . $db->prefix . "_webspace
-	WHERE user_id=" . $_SESSION['user_id']
+	WHERE user_id=" . (int)$_SESSION['user_id']
 ;
 
 $result = $db->Execute($query);

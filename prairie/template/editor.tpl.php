@@ -34,7 +34,7 @@
 		<div class="box_body">
 			<p>
 				<label for="id_webspace_title"><?php echo _("Title");?></label>
-				<input type="text" name="webspace_title" id="id_webspace_title" value="<?php if (isset($webspace['webspace_title'])) { echo $webspace['webspace_title']; }?>" />
+				<input type="text" name="webspace_title" id="id_webspace_title" value="<?php if (isset($webspace['webspace_title'])) { echo htmlspecialchars($webspace['webspace_title']); }?>" />
 			</p>
 	
 	
@@ -91,7 +91,7 @@
 		<div class="box_body">
 			<p>
 				<label for="id_html"><?php echo _("HTML");?></label>
-				<textarea id="id_html" name="html" class="mceEditor"><?php if (isset($webspace['webspace_html'])) echo $webspace['webspace_html']; ?></textarea>
+				<textarea id="id_html" name="html" class="mceEditor"><?php if (isset($webspace['webspace_html'])) echo htmlspecialchars($webspace['webspace_html']); ?></textarea>
 				<script  type="text/javascript">
 				tinyMCE.init({
 			// General options

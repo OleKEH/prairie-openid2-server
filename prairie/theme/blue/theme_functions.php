@@ -190,7 +190,7 @@ function theme_head ($menu) {
 //	else $imgUrl = "/get_file.php?title=0";
 //	$cont = link_('<img src="'.$imgUrl.'" border="0" alt="" />', "/"); 
 	// Alternate: Have header as TEXT. 
-	$cont = WEBSPACE_USERNAME; 
+	$cont = htmlspecialchars(WEBSPACE_USERNAME);
 	$html = <<<HDD
 	<!-- header -->
   <div class="art-header">

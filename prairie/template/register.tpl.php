@@ -50,7 +50,7 @@ else {
 				if (isset($email_domains)) {
 					$email_domains_str = implode (", ", $email_domains);
 					$email_domain_str = _("Registration is limited to people whom have an email account ending with {1}.");
-					$email_domain_str = str_replace("{1}", $email_domains_str, $email_domain_str);
+					$email_domain_str = str_replace("{1}", htmlspecialchars($email_domains_str), $email_domain_str);
 					echo $email_domain_str;
 				}
 				else {
@@ -67,7 +67,7 @@ else {
 			
 			<p>
 				<label for="id_user_email"><?php echo _("Email");?></label>
-				<input type="text" name="user_email" id="id_user_email" value="<?php if (isset($_POST['user_email'])) { echo $_POST['user_email'];}?>"/>
+				<input type="text" name="user_email" id="id_user_email" value="<?php if (isset($_POST['user_email'])) { echo htmlspecialchars($_POST['user_email']);}?>"/>
 			</p>
 			
 			<p>
@@ -76,12 +76,12 @@ else {
 			
 			<p>
 				<label for="id_user_password1"><?php echo _("Password");?></label>
-				<input type="password" name="user_password1" id="id_user_password1" value="<?php if (isset($_POST['user_password1'])) { echo $_POST['user_password1']; }?>" />
+				<input type="password" name="user_password1" id="id_user_password1" value="<?php if (isset($_POST['user_password1'])) { echo htmlspecialchars($_POST['user_password1']); }?>" />
 			</p>
 	
 			<p>
 				<label for="id_user_password2"><?php echo _("Repeat password");?></label>
-				<input type="password" name="user_password2" id="id_user_password2" value="<?php if (isset($_POST['user_password2'])) { echo $_POST['user_password2']; }?>" />
+				<input type="password" name="user_password2" id="id_user_password2" value="<?php if (isset($_POST['user_password2'])) { echo htmlspecialchars($_POST['user_password2']); }?>" />
 			</p>
 
 
@@ -93,7 +93,7 @@ else {
 			
 			<p>
 				<label for="id_openid_name"><?php echo _("OpenID name");?></label>
-				<input type="text" name="openid_name" id="id_openid_name" value="<?php if (isset($_POST['openid_name'])) { echo $_POST['openid_name'];}?>" />
+				<input type="text" name="openid_name" id="id_openid_name" value="<?php if (isset($_POST['openid_name'])) { echo htmlspecialchars($_POST['openid_name']);}?>" />
 			</p>
 	
 			
@@ -101,12 +101,12 @@ else {
 	
 			<p>
 				<label for="id_user_name"><?php echo _("Name");?></label>
-				<input type="text" id="id_user_name" name="user_name" value="<?php if (isset($_POST['user_name'])) { echo $_POST['user_name']; }?>"/>
+				<input type="text" id="id_user_name" name="user_name" value="<?php if (isset($_POST['user_name'])) { echo htmlspecialchars($_POST['user_name']); }?>"/>
 			</p>
 	
 			<p>
 				<label for="id_user_location"><?php echo _("Location");?></label>
-				<input type="text" id="id_user_location" name="user_location" value="<?php if (isset($_POST['user_location'])) { echo $_POST['user_location']; }?>"/>
+				<input type="text" id="id_user_location" name="user_location" value="<?php if (isset($_POST['user_location'])) { echo htmlspecialchars($_POST['user_location']); }?>"/>
 			</p>
 			
 			<p>

@@ -103,7 +103,7 @@ function theme_topMenuItem ($selected, $buttontext, $menuURL) {
 
 function theme_head ($menu) {
 	
-	if (defined('WEBSPACE_USERID')) $imgUrl = "/get_file.php?title=".WEBSPACE_USERID; 
+	if (defined('WEBSPACE_USERID')) $imgUrl = "/get_file.php?title=".(int)WEBSPACE_USERID; 
 	else $imgUrl = "/get_file.php?title=0";
 	$cont = link_('<img src="'.$imgUrl.'" border="0" alt="" />', "/"); 
 	$html = <<<HDD

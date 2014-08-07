@@ -35,7 +35,7 @@
 		<div class="box_body">
 			<p>
 				<label for="id_user_name"><?php echo _("Name");?></label>
-				<input type="text" name="user_name" id="id_user_name" value="<?php if (isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; }?>" />
+				<input type="text" name="user_name" id="id_user_name" value="<?php if (isset($_SESSION['user_name'])) { echo htmlspecialchars($_SESSION['user_name']); }?>" />
 			</p>
 				
 			<p>
@@ -114,7 +114,7 @@
 			
 			<p>
 				<label for="id_user_location"><?php echo _("Location");?></label>
-				<input type="text" name="user_location" id="id_user_location" value="<?php if (isset($_SESSION['user_location'])) echo $_SESSION['user_location']; ?>" />
+				<input type="text" name="user_location" id="id_user_location" value="<?php if (isset($_SESSION['user_location'])) echo htmlspecialchars($_SESSION['user_location']); ?>" />
 			</p>
 			
 			<p class="warning">
@@ -123,37 +123,37 @@
 			
 			<p>
 				<label for="id_user_nick"><?php echo _("Nickname");?></label>
-				<input type="text" name="user_nick" id="id_user_nick" value="<?php if (isset($_SESSION['user_nick'])) echo $_SESSION['user_nick']; ?>" />
+				<input type="text" name="user_nick" id="id_user_nick" value="<?php if (isset($_SESSION['user_nick'])) echo htmlspecialchars($_SESSION['user_nick']); ?>" />
 			</p>
 			<p>
 				<label for="id_user_gender"><?php echo _("Gender (M/F)");?></label>
-				<input type="text" name="user_gender" id="id_user_gender" value="<?php if (isset($_SESSION['user_gender'])) echo $_SESSION['user_gender']; ?>" />
+				<input type="text" name="user_gender" id="id_user_gender" value="<?php if (isset($_SESSION['user_gender'])) echo htmlspecialchars($_SESSION['user_gender']); ?>" />
 			</p>
 			
 			<p>
 				<label for="id_user_postcode"><?php echo _("Postcode");?></label>
-				<input type="text" name="user_postcode" id="id_user_postcode" value="<?php if (isset($_SESSION['user_postcode'])) echo $_SESSION['user_postcode']; ?>" />
+				<input type="text" name="user_postcode" id="id_user_postcode" value="<?php if (isset($_SESSION['user_postcode'])) echo htmlspecialchars($_SESSION['user_postcode']); ?>" />
 			</p>
 			
 			<p>
 				<label for="id_user_country"><?php echo _("Country code");?></label>
-				<input type="text" name="user_country" id="id_user_country" value="<?php if (isset($_SESSION['user_country'])) echo $_SESSION['user_country']; ?>" />
+				<input type="text" name="user_country" id="id_user_country" value="<?php if (isset($_SESSION['user_country'])) echo htmlspecialchars($_SESSION['user_country']); ?>" />
 			</p>
 		
 		
 			<p>
 				<label for="id_user_language"><?php echo _("Preferred Language (EN)");?></label>
-				<input type="text" name="user_language" id="id_user_language" value="<?php if (isset($_SESSION['user_language'])) echo $_SESSION['user_language']; ?>" />
+				<input type="text" name="user_language" id="id_user_language" value="<?php if (isset($_SESSION['user_language'])) echo htmlspecialchars($_SESSION['user_language']); ?>" />
 			</p>
 			
 			<p>
 				<label for="id_user_timezone"><?php echo _("Timezone (Europe/Paris)");?></label>
-				<input type="text" name="user_timezone" id="id_user_timezone" value="<?php if (isset($_SESSION['user_timezone'])) echo $_SESSION['user_timezone']; ?>" />
+				<input type="text" name="user_timezone" id="id_user_timezone" value="<?php if (isset($_SESSION['user_timezone'])) echo htmlspecialchars($_SESSION['user_timezone']); ?>" />
 			</p>
 			
 			<p>
 				<label for="id_user_birthdate"><?php echo _("Birthdate (YYYY-MM-DD)");?></label>
-				<input type="text" name="user_birthdate" id="id_user_birthdate" value="<?php if (isset($_SESSION['user_birthdate'])) echo $_SESSION['user_birthdate']; ?>" />
+				<input type="text" name="user_birthdate" id="id_user_birthdate" value="<?php if (isset($_SESSION['user_birthdate'])) echo htmlspecialchars($_SESSION['user_birthdate']); ?>" />
 			</p>
 			
 			<p class="buttons">
@@ -174,7 +174,7 @@
 		
 		<div class="box_body">
 			<div style="text-align:center;">
-				<img src="/get_file.php?avatar=<?php echo $_SESSION['user_id'];?>&amp;width=200" width="200" class="avatar" />
+				<img src="/get_file.php?avatar=<?php echo (int)$_SESSION['user_id'];?>&amp;width=200" width="200" class="avatar" />
 			</div>
 			
 			<p>
@@ -206,7 +206,7 @@
 			<p>
 				<?php 
 				$text = _("Your current email address is {1}.");
-				echo str_replace("{1}", $_SESSION['user_email'], $text);
+				echo str_replace("{1}", htmlspecialchars($_SESSION['user_email']), $text);
 				?>
 			</p>
 
