@@ -151,16 +151,10 @@ function textarea_($name, $content="", $cols=60, $rows=4, $style="" ) {
 
 // URL routing into array
 function routeURL ($webspace_name=null) {
-
-	$document_root = trim(dirname($_SERVER['PHP_SELF']), '/');
-	$script_name = $_SERVER['PHP_SELF'];
-
-	$request_uri = substr($_SERVER['REQUEST_URI'], strlen($document_root) + 1);
-	
-	$tmp = strpos($request_uri, '?');
-	
-	if ($tmp) {
-		$request_uri = substr($request_uri, 0, $tmp);
+	if (isset($_SERVER['ORIG_PATH_INFO'])) {
+		$request_uri = substr($_SERVER['ORIG_PATH_INFO'], 1);
+	} else {
+		$request_uri = substr($_SERVER['PATH_INFO'], 1);
 	}
 	
 	$request_arr = explode('/', $request_uri);
