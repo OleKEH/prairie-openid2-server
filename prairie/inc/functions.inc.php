@@ -135,7 +135,7 @@ function labeltextarea_($name, $label, $value="") {
 function input_($name,  $defval="", $type="text", $size=45, $maxlength=0, $style=""){
 	$html='<input'; 
 	if ($style)$html.=' class="'.$style.'"'; 
-	$html .=' name="'.$name.'" type="'.$type.'" value="'.$defval.'"'; 
+	$html .=' name="'.$name.'" type="'.$type.'" value="'.htmlspecialchars($defval).'"'; 
 	$html .= ' id="'.$name.'" size="'.$size.'"'; 
 	if ($maxlength!=0) $html.=' maxlength="'.$maxlength.'"'; 
 	$html.="/>\n"; 

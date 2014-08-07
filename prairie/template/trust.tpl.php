@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"){
 if (isset($trust)) {
 
 $trust_string = _("You are about to login to <a href='{1}'>{1}</a>. You have done this {2} times before. Last login datetime: {3}");
-$trust_string = str_replace('{1}', '<a href="'.$trust['trust_url'].'">'.$trust['trust_url'].'</a>', $trust_string);
+$trust_string = str_replace('{1}', '<a href="'.htmlspecialchars($trust['trust_url']).'">'.htmlspecialchars($trust['trust_url']).'</a>', $trust_string);
 $trust_string = str_replace('{2}', $trust['trust_total'], $trust_string);
 $trust_string = str_replace('{3}', $trust['trust_last_visit'], $trust_string);
 ?>
@@ -51,7 +51,7 @@ $trust_string = str_replace('{3}', $trust['trust_last_visit'], $trust_string);
 elseif (isset($trust_url)) {
 
 $trust_string = _("You are about to login to <a href='{1}'>{1}</a>. This is the first time you login to that site.");
-$trust_string = str_replace('{1}', $trust_url, $trust_string);
+$trust_string = str_replace('{1}', htmlspecialchars($trust_url), $trust_string);
 ?>
 	<p><?php echo $trust_string;?></p>
 <?php }?>

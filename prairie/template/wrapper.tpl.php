@@ -62,7 +62,7 @@ function render_topMenu ($startblock = "", $endblock = "") {
 		<link rel="openid.server" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/login" />
 	<?php }?>
 
-	<title><?php if (isset($webspace_title)) { echo $webspace_title; } else { echo _("Prairie");}?></title>
+	<title><?php if (isset($webspace_title)) { echo htmlspecialchars($webspace_title); } else { echo _("Prairie");}?></title>
 
 	<script type="text/javascript" src="/<?php echo SCRIPT_TEMPLATE_PATH;?>js/functions.js"></script>
 	<script type="text/javascript" src="/tiny_mce/tiny_mce.js"></script>

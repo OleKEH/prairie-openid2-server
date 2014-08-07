@@ -39,8 +39,8 @@ if (isset($uri_routing[1]) && $uri_routing[1] == "account" && isset($uri_routing
 			<?php
 			if (isset($account)) {
 			?>
-			<input type="hidden" name="user_id" value="<?php echo $account['user_id'];?>" />
-			<input type="hidden" name="openid_name" value="<?php echo $account['openid_name'];?>" />
+			<input type="hidden" name="user_id" value="<?php echo htmlspecialchars($account['user_id']);?>" />
+			<input type="hidden" name="openid_name" value="<?php echo htmlspecialchars($account['openid_name']);?>" />
 			
 			<p>
 				<label for="id_dob_year"><?php echo _("Memorable date");?></label>
@@ -114,7 +114,7 @@ if (isset($uri_routing[1]) && $uri_routing[1] == "account" && isset($uri_routing
 
 			<p>
 				<label><?php echo _("email address");?></label>
-				<input type="text" name="user_email" value="<?php echo $account['user_email'];?>" />
+				<input type="text" name="user_email" value="<?php echo htmlspecialchars($account['user_email']);?>" />
 			</p>
 
 			<p class="buttons">
@@ -167,10 +167,10 @@ elseif (isset($uri_routing[1]) && $uri_routing[1] == "accounts") {
 			foreach ($accounts as $key => $i):
 			?>
 			<li>
-				<span class="openid_name"><a href="/maintain/account/<?php echo $i['user_id'];?>"><?php echo $i['openid_name'];?></a></span>
-				<span class="user_name"><?php echo $i['user_name'];?></span>
-				<span class="user_email"><a href="mailto:<?php echo $i['user_email'];?>"><?php echo $i['user_email'];?></a></span>
-				<span class="user_dob"><?php echo $i['user_dob'];?></span>
+				<span class="openid_name"><a href="/maintain/account/<?php echo htmlspecialchars($i['user_id']);?>"><?php echo htmlspecialchars($i['openid_name']);?></a></span>
+				<span class="user_name"><?php echo htmlspecialchars($i['user_name']);?></span>
+				<span class="user_email"><a href="mailto:<?php echo htmlspecialchars($i['user_email']);?>"><?php echo htmlspecialchars($i['user_email']);?></a></span>
+				<span class="user_dob"><?php echo htmlspecialchars($i['user_dob']);?></span>
 				<span class="user_live"><?php if (!empty($i['user_live'])) { echo _("Live");} else { echo _("Pending");}?></span>
 			</li>
 			<?php
@@ -238,7 +238,7 @@ else {
 			
 			<p>
 				<label for="id_unauthorized_openid_names"><?php echo _("Names");?></label>
-				<input type="text" name="unauthorized_openid_names" id="id_unauthorized_openid_names" value="<?php echo $arr_reg['unauthorized_openid_names'];?>" />
+				<input type="text" name="unauthorized_openid_names" id="id_unauthorized_openid_names" value="<?php echo htmlspecialchars($arr_reg['unauthorized_openid_names']);?>" />
 			</p>
 			
 			<p class="note">
@@ -311,7 +311,7 @@ else {
 			
 			<p>
 				<label for="id_maintainer_openids"><?php echo _("Account names");?></label>
-				<input type="text" name="maintainer_openids" id="id_maintainer_openids" value="<?php echo $arr_security['maintainer_openids'];?>" />
+				<input type="text" name="maintainer_openids" id="id_maintainer_openids" value="<?php echo htmlspecialchars($arr_security['maintainer_openids']);?>" />
 			</p>
 			
 			<p class="buttons">
@@ -333,7 +333,7 @@ else {
 			
 			<p>
 				<label for="id_authorized_email_domains"><?php echo _("Email domains");?></label>
-				<input type="text" name="authorized_email_domains" id="id_authorized_email_domains" value="<?php echo $arr_reg['email_domains'];?>" />
+				<input type="text" name="authorized_email_domains" id="id_authorized_email_domains" value="<?php echo htmlspecialchars($arr_reg['email_domains']);?>" />
 			</p>
 			
 			<p class="note">
@@ -359,12 +359,12 @@ else {
 			
 			<p>
 				<label for="id_standard_locale"><?php echo _("Standard locale");?></label>
-				<input type="text" name="standard_locale" id="id_standard_locale" value="<?php echo $arr_lang['standard_locale'];?>" />
+				<input type="text" name="standard_locale" id="id_standard_locale" value="<?php echo htmlspecialchars($arr_lang['standard_locale']);?>" />
 			</p>
 			
 			<p>
 				<label for="id_server_locale"><?php echo _("Server locale");?></label>
-				<input type="text" name="server_locale" id="id_server_locale" value="<?php echo $arr_lang['server_locale'];?>" />
+				<input type="text" name="server_locale" id="id_server_locale" value="<?php echo htmlspecialchars($arr_lang['server_locale']);?>" />
 			</p>
 
 			<p class="buttons">
