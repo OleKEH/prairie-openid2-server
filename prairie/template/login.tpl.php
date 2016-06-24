@@ -185,7 +185,7 @@
 			?>
 			<p>
 				<label for="id_login_email"><?php echo _("Email");?></label>
-				<input type="text" id="id_login_email" value="" name="login_email" />
+				<input type="email" id="id_login_email" value="" name="login_email" />
 			</p>
 			<?php }?>
 
