@@ -167,11 +167,15 @@
 			if ($_SERVER["REQUEST_METHOD"]=="POST"){
 				reset ($_POST); 
 				foreach ($_POST as $key=>$value) {
+					if (in_array($key, array(login_email,login_password,login_admin)))
+						continue;
 					$fields .= input_($key, $value, "hidden"); 
 				}
 			} else {
 				reset ($_GET); 
 				foreach ($_GET as $key=>$value) {
+					if (in_array($key, array(login_email,login_password,login_admin)))
+						continue;
 					$fields .= input_($key, $value, "hidden"); 
 				}
 			}
